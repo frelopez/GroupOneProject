@@ -1,3 +1,15 @@
-public class main {
+import javafx.application.Application;
+import javafx.stage.Stage;
 
+public class main extends Application {
+
+    @Override
+    public void start(Stage stage) {
+        stage.setTitle("Main");
+        stage.setScene(SceneFactory.create(SceneType.MAIN, stage));
+        stage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
