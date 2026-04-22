@@ -5,8 +5,9 @@ public class main extends Application {
 
     @Override
     public void start(Stage stage) {
+        SceneManager.init(stage);
         stage.setTitle("Main");
-        stage.setScene(SceneFactory.create(SceneType.MAIN, stage));
+        SceneManager.getInstance().navigateTo(SceneType.MAIN);
         stage.show();
     }
     public static void main(String[] args) {
