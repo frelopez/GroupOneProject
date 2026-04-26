@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogInController">
+   <left>
+      <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #263F73;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="2.0" layoutY="71.0" prefHeight="27.0" prefWidth="225.0" text="Welcome to Hang Your Friends" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="-39.0" layoutY="73.0" prefHeight="25.0" prefWidth="335.0" text="Sign Up" />
+            <Label layoutX="54.0" layoutY="124.0" text="Username" />
+            <Label layoutX="55.0" layoutY="159.0" text="Password" />
+            <TextField fx:id="username" layoutX="136.0" layoutY="120.0" />
+            <PasswordField fx:id="password" layoutX="136.0" layoutY="155.0" />
+            <Button fx:id="SignInButton" layoutX="54.0" layoutY="206.0" mnemonicParsing="false" onAction="#signInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Create" />
+            <Label fx:id="SignInMessage" alignment="CENTER" layoutX="53.0" layoutY="242.0" prefHeight="17.0" prefWidth="251.0" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
