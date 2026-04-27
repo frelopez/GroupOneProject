@@ -101,15 +101,22 @@ public class DatabaseManager {
 	}
 
 	//TODO maybe return value based on if username already exists?
-	public void insertUser(String name, String password) {
+	public int insertUser(String name, String password) {
 		String sql = "INSERT INTO Users (name, password) VALUES (?, ?)";
-		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			pstmt.setString(1, name);
 			pstmt.setString(2, password);
 			pstmt.executeUpdate();
+
+			try (ResultSet keys = pstmt.getGeneratedKeys()) {
+				if (keys.next()) {
+					return keys.getInt(1);
+				}
+			}
 		} catch (SQLException e) {
-			System.err.println("insertion failed: "+e.getMessage());
+			System.err.println("insertUser failed: " + e.getMessage());
 		}
+		return -1;
 	}
 
 	//TODO redo this once we settle on a concrete implementation
@@ -159,13 +166,123 @@ public class DatabaseManager {
 		}
 	}
 
-	public void insertWord(String word, int difficulty) {
-		String sql = "INSERT INTO Words (word, difficulty) VALUES (?)";
-		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
-			pstmt.setString(1,word);
-			pstmt.setInt(2,difficulty);
+	public int insertWord(String word, int difficulty) {
+		String sql = "INSERT INTO Words (word, difficulty) VALUES (?, ?)";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			pstmt.setString(1, word);
+			pstmt.setInt(2, difficulty);
+			pstmt.executeUpdate();
+
+			try (ResultSet keys = pstmt.getGeneratedKeys()) {
+				if (keys.next()) {
+					return keys.getInt(1);
+				}
+			}
 		} catch (SQLException e) {
-			System.err.println("insertion failed: " + e.getMessage());
+			System.err.println("insertWord failed: " + e.getMessage());
+		}
+		return -1;
+	}
+
+	private String getCollectedWordColumn(int slot) {
+		return switch (slot) {
+			case 0 -> "word_0_id";
+			case 1 -> "word_1_id";
+			case 2 -> "word_2_id";
+			default -> throw new IllegalArgumentException("Collected word slot must be 0, 1, or 2.");
+		};
+	}
+
+	public void addCollectedWord(int userId, int wordId, int slot) {
+		String column = getCollectedWordColumn(slot);
+		String sql = "UPDATE Users SET " + column + " = ? WHERE id = ?";
+
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, wordId);
+			pstmt.setInt(2, userId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("addCollectedWord failed: " + e.getMessage());
+		}
+	}
+
+	public List<String> getCollectedWordsForUser(int userId) {
+		List<String> collectedWords = new ArrayList<>();
+
+		String sql = """
+		SELECT w0.word AS word0, w1.word AS word1, w2.word AS word2
+		FROM Users u
+		LEFT JOIN Words w0 ON u.word_0_id = w0.id
+		LEFT JOIN Words w1 ON u.word_1_id = w1.id
+		LEFT JOIN Words w2 ON u.word_2_id = w2.id
+		WHERE u.id = ?
+	""";
+
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, userId);
+
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					if (rs.getString("word0") != null) {
+						collectedWords.add(rs.getString("word0"));
+					}
+					if (rs.getString("word1") != null) {
+						collectedWords.add(rs.getString("word1"));
+					}
+					if (rs.getString("word2") != null) {
+						collectedWords.add(rs.getString("word2"));
+					}
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("getCollectedWordsForUser failed: " + e.getMessage());
+		}
+
+		return collectedWords;
+	}
+
+	public void updateCollectedWord(int userId, int oldWordId, int newWordId) {
+		String sql = """
+		UPDATE Users
+		SET
+			word_0_id = CASE WHEN word_0_id = ? THEN ? ELSE word_0_id END,
+			word_1_id = CASE WHEN word_1_id = ? THEN ? ELSE word_1_id END,
+			word_2_id = CASE WHEN word_2_id = ? THEN ? ELSE word_2_id END
+		WHERE id = ?
+	""";
+
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, oldWordId);
+			pstmt.setInt(2, newWordId);
+			pstmt.setInt(3, oldWordId);
+			pstmt.setInt(4, newWordId);
+			pstmt.setInt(5, oldWordId);
+			pstmt.setInt(6, newWordId);
+			pstmt.setInt(7, userId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("updateCollectedWord failed: " + e.getMessage());
+		}
+	}
+
+	public void deleteCollectedWord(int userId, int wordId) {
+		String sql = """
+		UPDATE Users
+		SET
+			word_0_id = CASE WHEN word_0_id = ? THEN NULL ELSE word_0_id END,
+			word_1_id = CASE WHEN word_1_id = ? THEN NULL ELSE word_1_id END,
+			word_2_id = CASE WHEN word_2_id = ? THEN NULL ELSE word_2_id END
+		WHERE id = ?
+	""";
+
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, wordId);
+			pstmt.setInt(2, wordId);
+			pstmt.setInt(3, wordId);
+			pstmt.setInt(4, userId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("deleteCollectedWord failed: " + e.getMessage());
 		}
 	}
 
