@@ -19,7 +19,7 @@ public class LogInController {
     public void signInButtonOnAction(ActionEvent e) {
 
 
-        if (!username.getText().isBlank() || !password.getText().isBlank()) {
+        if (username.getText().isBlank() || password.getText().isBlank()) {
             SignInMessage.setText("Failed to Sign Up");
         } else {
             SignInMessage.setText("You are signed Up");
