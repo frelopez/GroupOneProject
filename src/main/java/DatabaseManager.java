@@ -146,6 +146,26 @@ public class DatabaseManager {
 		}
 	}
 
+	/**
+	 * gets the id of the User which matches the name parameter
+	 * @param name
+	 * @return the id of the User, -1 if no such user or error
+	 */
+	public int getUserId(String name) {
+		String sql = "SELECT id FROM Users WHERE name = ?";
+		int returnMe = -1;
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				returnMe = rs.getInt("id");
+			}
+		} catch(SQLException e) {
+			System.err.println("getUserId failed: "+e.getMessage());
+		}
+		return returnMe;
+	}
+
 	public void deleteUser(int id) {
 		String sql = "DELETE FROM Users WHERE id = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
