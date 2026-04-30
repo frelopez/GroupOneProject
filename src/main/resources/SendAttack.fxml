@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pearl;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SendAttackController">
+   <children>
+      <VBox layoutX="347.0" layoutY="128.0" prefHeight="107.0" prefWidth="105.0" AnchorPane.rightAnchor="148.0">
+         <children>
+            <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: red;" text="Attack Him!" textAlignment="JUSTIFY">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Attack Him!">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin></Button>
+            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Attack Him!">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin></Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox layoutX="118.0" layoutY="131.0" prefHeight="154.0" prefWidth="190.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="211.0" style="-fx-background-color: #D3D3D3;" text="User A (HighScore)">
+               <VBox.margin>
+                  <Insets top="11.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="289.0" style="-fx-background-color: #D3D3D3;" text="User B  (HighScore)">
+               <VBox.margin>
+                  <Insets top="34.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="243.0" style="-fx-background-color: #D3D3D3;" text="User C  (HighScore)">
+               <VBox.margin>
+                  <Insets top="34.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <Button layoutX="38.0" layoutY="336.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="&lt;- Back" />
+   </children>
+</AnchorPane>
