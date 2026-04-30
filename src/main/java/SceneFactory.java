@@ -16,7 +16,7 @@ public class SceneFactory {
 	public static Scene create(SceneType type, Stage stage) {
 		return switch (type) {
 			case MAIN -> new MainMenuController().buildScene();
-			case PLAY -> null;
+      case PLAY -> new PlayController().buildScene();
 			case LOGIN -> null;
 			case FAILURE -> null;
 			case PROFILE -> null;
@@ -25,7 +25,7 @@ public class SceneFactory {
 			case COLLECTION -> new CollectionController().buildScene();
 			case LEADERBOARD -> null;
 			case SIGN_UP -> null;
-			case PLAY_ATTACKED -> null;
+			case PLAY_ATTACKED -> new PlayAttackedController().buildScene();
 			case FAILURE_ATTACKED -> null;
 			case SUCCESS_ATTACKED -> null;
 		};
