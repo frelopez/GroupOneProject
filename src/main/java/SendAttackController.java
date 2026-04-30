@@ -1,9 +1,13 @@
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class SendAttackController {
+public class SendAttackController implements Initializable {
     @FXML
     private Button btnSend1;
     @FXML
@@ -16,6 +20,19 @@ public class SendAttackController {
     private Label lbl2;
     @FXML
     private Label lbl3;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void SendAttackBuild(Stage stage){
+        DatabaseManager db = DatabaseManager.getInstance();
+
+        lbl1.setText("Freddie "+db.getUserScore(db.getUserId("Freddie")));
+        lbl2.setText("Angel "+db.getUserScore(db.getUserId("Angel")));
+        lbl3.setText("Dennis "+db.getUserScore(db.getUserId("Dennis")));
+    }
 
     public void sendButtonOnAction(ActionEvent actionEvent) {
         //TODO: Connect method to send word to user.
