@@ -18,7 +18,7 @@ public class Main extends Application {
         stage.setMaxHeight(STAGE_HEIGHT); stage.setMinHeight(STAGE_HEIGHT);
         stage.setMaxWidth(STAGE_WIDTH); stage.setMinWidth(STAGE_WIDTH);
         SceneManager.init(stage);
-        SceneManager.getInstance().navigateTo(SceneType.PLAY);
+        SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         stage.show();
     }
 

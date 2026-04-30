@@ -17,14 +17,14 @@ public class SceneFactory {
 		return switch (type) {
 			case MAIN -> new MainMenuController().buildScene();
       case PLAY -> new PlayController().buildScene();
-			case LOGIN -> null;
+			case LOGIN -> new LogInController().buildScene();
 			case FAILURE -> null;
 			case PROFILE -> null;
 			case SUCCESS -> null;
 			case ATTACKING -> null;
 			case COLLECTION -> new CollectionController().buildScene();
 			case LEADERBOARD -> null;
-			case SIGN_UP -> null;
+			case SIGN_UP -> new SignUpController().buildScene();
 			case PLAY_ATTACKED -> new PlayAttackedController().buildScene();
 			case FAILURE_ATTACKED -> null;
 			case SUCCESS_ATTACKED -> null;
