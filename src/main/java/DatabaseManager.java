@@ -179,6 +179,21 @@ public class DatabaseManager {
 		}
 		return returnMe;
 	}
+	public int getUserScore(int id) {
+		String sql = "SELECT id FROM Users WHERE id = ?";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, id);
+			try(ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) return rs.getInt("score");
+			}
+		}catch (SQLException e){
+			System.err.println("getUserScore failed: "+e.getMessage());
+		}
+		return 0;
+	}
+
+
+
 
 	public void deleteUser(int id) {
 		String sql = "DELETE FROM Users WHERE id = ?";
