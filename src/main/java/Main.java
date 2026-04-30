@@ -9,8 +9,8 @@ public class Main extends Application {
 
     private final int STAGE_WIDTH = 640;
     private final int STAGE_HEIGHT = 480;
-
     private DatabaseManager db;
+
     @Override
     public void start(Stage stage) {
         db = DatabaseManager.getInstance();
@@ -25,9 +25,10 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
     public void stop() {
-        if(db!=null) {
+        if (db != null) {
             db.close();
         }
     }

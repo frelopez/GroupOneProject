@@ -15,14 +15,14 @@ public class SceneFactory {
 	//TODO: insert all scene constructors when they become available. it will be a simple null for now
 	public static Scene create(SceneType type, Stage stage) {
 		return switch (type) {
-			case MAIN -> null;
-			case PLAY -> new PlayController().buildScene();
+			case MAIN -> new MainMenuController().buildScene();
+      case PLAY -> new PlayController().buildScene();
 			case LOGIN -> null;
 			case FAILURE -> null;
 			case PROFILE -> null;
 			case SUCCESS -> null;
 			case ATTACKING -> null;
-			case COLLECTION -> null;
+			case COLLECTION -> new CollectionController().buildScene();
 			case LEADERBOARD -> null;
 			case SIGN_UP -> null;
 			case PLAY_ATTACKED -> new PlayAttackedController().buildScene();
