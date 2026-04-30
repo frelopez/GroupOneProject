@@ -27,13 +27,31 @@ public class SignUpController {
     @FXML
     private Button SignUpButton;
     @FXML
-    private TextField username;
+    private TextField Username;
     @FXML
-    private PasswordField password;
+    private PasswordField Password;
     @FXML
-    private PasswordField repassword;
+    private PasswordField Repassword;
+    @FXML
+    private Label label;
 
     public void SignUpButtonOnAction(ActionEvent e) {
-
+        if (Username.getText().isBlank() || Password.getText().isBlank()) {
+            label.setText("Check usernane or password");
+        } else {
+            String username = Username.getText();
+            String password = Password.getText();
+            String repassword = Repassword.getText();
+            if (password.equals(repassword)) {
+                int createUser = DatabaseManager.getInstance().insertUser(username, password);
+                if (createUser == -1) {
+                    label.setText("User already exist");
+                } else {
+                    SceneManager.getInstance().navigateTo(SceneType.PROFILE);
+                }
+            }else{
+                label.setText("passwords do not match");
+            }
+        }
     }
 }

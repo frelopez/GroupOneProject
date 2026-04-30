@@ -10,7 +10,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         db = DatabaseManager.getInstance();
         stage.setTitle("Main");
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+        SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         stage.show();
     }
 

@@ -118,7 +118,21 @@ public class DatabaseManager {
 		}
 		return -1;
 	}
-
+	//TODO checks if their exist a matching user and password in the user table returns id or -1 if none
+	public int loginUser(String name, String password){
+		String sql = "Select id From Users Where name = ? AND password = ?";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()){
+				return rs.getInt("id");
+			}
+		} catch (SQLException e) {
+			System.err.println("LoginUser failed: "+ e.getMessage());
+		}
+		return -1;
+	}
 	//TODO redo this once we settle on a concrete implementation
 	public List<String> getAllUsers() {
 		List<String> usernames = new ArrayList<>();
