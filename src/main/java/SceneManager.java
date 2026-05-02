@@ -28,8 +28,14 @@ public class SceneManager {
     }
 
     public void navigateTo(SceneType type) {
-        Scene scene = cache.computeIfAbsent(type,
-                t -> SceneFactory.create(t, stage));
+        Scene scene;
+        if(type==SceneType.PLAY || type==SceneType.PLAY_ATTACKED) { //put SceneTypes in here if they shouldn't get cached
+            scene = SceneFactory.create(type, stage);
+        }
+        else {
+            scene = cache.computeIfAbsent(type,
+                    t -> SceneFactory.create(t, stage));
+        }
         stage.setScene(scene);
     }
 }

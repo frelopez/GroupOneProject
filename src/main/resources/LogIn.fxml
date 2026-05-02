@@ -14,13 +14,14 @@
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="-39.0" layoutY="73.0" prefHeight="25.0" prefWidth="335.0" text="Sign Up" />
+            <Label alignment="CENTER" layoutX="-39.0" layoutY="73.0" prefHeight="25.0" prefWidth="335.0" text="Log In" />
             <Label layoutX="54.0" layoutY="124.0" text="Username" />
             <Label layoutX="55.0" layoutY="159.0" text="Password" />
             <TextField fx:id="username" layoutX="136.0" layoutY="120.0" />
             <PasswordField fx:id="password" layoutX="136.0" layoutY="155.0" />
-            <Button fx:id="SignInButton" layoutX="54.0" layoutY="206.0" mnemonicParsing="false" onAction="#signInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Create" />
-            <Label fx:id="SignInMessage" alignment="CENTER" layoutX="53.0" layoutY="242.0" prefHeight="17.0" prefWidth="251.0" />
+            <Button fx:id="LogInButtone" layoutX="54.0" layoutY="206.0" mnemonicParsing="false" onAction="#LogInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Log In" />
+            <Button fx:id="SignInButton1" layoutX="54.0" layoutY="238.0" mnemonicParsing="false" onAction="#SignInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Sign Up" />
+            <Label fx:id="LogInMessage" layoutX="96.0" layoutY="98.0" prefHeight="17.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
    </right>

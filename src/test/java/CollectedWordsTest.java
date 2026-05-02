@@ -4,6 +4,15 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * CollectedWordsTest.java
+ * Verifies collected words can be added, retrieved,
+ * updated, and deleted correctly.
+ * @author Daniel Barker
+ * @version 0.1.0
+ * @since 4/29/26
+ */
+
 public class CollectedWordsTest {
 
     @Test
