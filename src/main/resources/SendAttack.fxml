@@ -8,17 +8,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pearl;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SendAttackController">
    <children>
-      <VBox layoutX="347.0" layoutY="128.0" prefHeight="107.0" prefWidth="105.0" AnchorPane.rightAnchor="148.0">
+      <VBox fx:id="b" layoutX="347.0" layoutY="128.0" prefHeight="107.0" prefWidth="105.0" AnchorPane.rightAnchor="148.0">
          <children>
-            <Button alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: red;" text="Attack Him!" textAlignment="JUSTIFY">
+            <Button fx:id="btnSend1" alignment="TOP_LEFT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#sendButtonOnAction" style="-fx-background-color: red;" text="Attack Him!" textAlignment="JUSTIFY">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin></Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Attack Him!">
+            <Button fx:id="btnSend2" mnemonicParsing="false" onAction="#sendButtonOnAction" style="-fx-background-color: red;" text="Attack Him!">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin></Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Attack Him!">
+            <Button fx:id="btnSend3" mnemonicParsing="false" onAction="#sendButtonOnAction" style="-fx-background-color: red;" text="Attack Him!">
                <VBox.margin>
                   <Insets top="25.0" />
                </VBox.margin></Button>
@@ -29,23 +29,23 @@
       </VBox>
       <VBox layoutX="118.0" layoutY="131.0" prefHeight="154.0" prefWidth="190.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="211.0" style="-fx-background-color: #D3D3D3;" text="User A (HighScore)">
+            <Label fx:id="lbl1" prefHeight="17.0" prefWidth="211.0" style="-fx-background-color: #D3D3D3;" text="User A (HighScore)">
                <VBox.margin>
                   <Insets top="11.0" />
                </VBox.margin>
             </Label>
-            <Label prefHeight="17.0" prefWidth="289.0" style="-fx-background-color: #D3D3D3;" text="User B  (HighScore)">
+            <Label fx:id="lbl2" prefHeight="17.0" prefWidth="289.0" style="-fx-background-color: #D3D3D3;" text="User B  (HighScore)">
                <VBox.margin>
                   <Insets top="34.0" />
                </VBox.margin>
             </Label>
-            <Label prefHeight="17.0" prefWidth="243.0" style="-fx-background-color: #D3D3D3;" text="User C  (HighScore)">
+            <Label fx:id="lbl3" prefHeight="17.0" prefWidth="243.0" style="-fx-background-color: #D3D3D3;" text="User C  (HighScore)">
                <VBox.margin>
                   <Insets top="34.0" />
                </VBox.margin>
             </Label>
          </children>
       </VBox>
-      <Button layoutX="38.0" layoutY="336.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="63.0" text="&lt;- Back" />
+      <Button fx:id="btnSend4" layoutX="38.0" layoutY="336.0" mnemonicParsing="false" onAction="#sendButtonOnAction" prefHeight="17.0" prefWidth="63.0" text="&lt;- Back" />
    </children>
 </AnchorPane>

@@ -1,13 +1,17 @@
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 
-public class SendAttackController implements Initializable {
+import java.io.IOException;
+import java.net.URL;
+
+public class SendAttackController {
     @FXML
     private Button btnSend1;
     @FXML
@@ -15,18 +19,29 @@ public class SendAttackController implements Initializable {
     @FXML
     private Button btnSend3;
     @FXML
+    private Button btnSend4;
+
+    @FXML
     private Label lbl1;
     @FXML
     private Label lbl2;
     @FXML
     private Label lbl3;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public Scene buildScene() {
+        URL url = getClass().getResource("SendAttack.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Scene scene = null;
+        try {
+            Parent root = loader.load();
+            scene = new Scene(root);
+        }catch (IOException e){
+            System.err.println("SendAttack buildScene failed: " + e.getMessage());
+        }
+        return scene;
     }
 
-    public void SendAttackBuild(Stage stage){
+    public void setUpLabels(){
         DatabaseManager db = DatabaseManager.getInstance();
 
         lbl1.setText("Freddie "+db.getUserScore(db.getUserId("Freddie")));
@@ -42,8 +57,8 @@ public class SendAttackController implements Initializable {
             //sendAttack(lbl2);
         }else if (actionEvent.getSource() == btnSend3) {
            // sendAttack(lbl3);
-        }else {
-            SceneManager.getInstance().navigateTo(SceneType.PLAY_ATTACKED);
+        }else if (actionEvent.getSource() == btnSend4) {
+            SceneManager.getInstance().navigateTo(SceneType.COLLECTION);
         }
     }
 }
