@@ -180,7 +180,7 @@ public class DatabaseManager {
 		return returnMe;
 	}
 	public int getUserScore(int id) {
-		String sql = "SELECT id FROM Users WHERE id = ?";
+		String sql = "SELECT score FROM Users WHERE id = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
 			pstmt.setInt(1, id);
 			try(ResultSet rs = pstmt.executeQuery()) {
@@ -360,5 +360,20 @@ public class DatabaseManager {
 		}catch(SQLException e) {
 			System.err.println("FRICK "+e.getMessage());
 		}
+	}
+
+	public List<String[]> getTopUsers(int limit) {
+		List<String[]> topUsers = new ArrayList<>();
+		String sql = "SELECT name, score FROM Users ORDER BY score DESC LIMIT ?";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)){
+			pstmt.setInt(1, limit);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				topUsers.add(new String[]{rs.getString("name"), rs.getString("score")});
+			}
+		}catch(SQLException e) {
+			System.err.println("getTopUsers failed: " + e.getMessage());
+		}
+		return topUsers;
 	}
 }
