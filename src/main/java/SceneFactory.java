@@ -20,7 +20,7 @@ public class SceneFactory {
 			case FAILURE -> null;
 			case PROFILE -> null;
 			case SUCCESS -> null;
-			case ATTACKING -> null;
+			case ATTACKING -> new SendAttackController().buildScene();
 			case COLLECTION -> new CollectionController().buildScene();
 			case LEADERBOARD -> null;
 			case SIGN_UP -> new SignUpController().buildScene();
@@ -29,4 +29,6 @@ public class SceneFactory {
 			case SUCCESS_ATTACKED -> null;
 		};
 	}
+
+
 }
