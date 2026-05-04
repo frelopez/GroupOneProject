@@ -20,13 +20,15 @@ public class SceneFactory {
 			case FAILURE -> null;
 			case PROFILE -> null;
 			case SUCCESS -> null;
-			case ATTACKING -> null;
+			case ATTACKING -> new SendAttackController().buildScene();
 			case COLLECTION -> new CollectionController().buildScene();
-			case LEADERBOARD -> null;
+			case LEADERBOARD -> new LeaderboardController().buildScene();
 			case SIGN_UP -> new SignUpController().buildScene();
 			case PLAY_ATTACKED -> new PlayAttackedController().buildScene();
 			case FAILURE_ATTACKED -> null;
 			case SUCCESS_ATTACKED -> null;
 		};
 	}
+
+
 }

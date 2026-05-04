@@ -54,6 +54,7 @@ public class CollectionController {
             int wordId = db.insertWord("banana", 2);
             db.addCollectedWord(userId, wordId, 0);
         }
+        GameManager.getInstance().setUserId(userId);
 
         List<String> words = db.getCollectedWordsForUser(userId);
         wordListView.getItems().setAll(words);
@@ -64,12 +65,15 @@ public class CollectionController {
     }
 
     public void sendAttack() {
+        DatabaseManager db = DatabaseManager.getInstance();
         String selectedWord = wordListView.getSelectionModel().getSelectedItem();
 
         if (selectedWord == null) {
             messageLabel.setText("Choose a word before sending an attack.");
         } else {
             messageLabel.setText("Attack selected with word: " + selectedWord);
+            GameManager.getInstance().setSendAttackWord(db.getUserId(selectedWord));
+            SceneManager.getInstance().navigateTo(SceneType.ATTACKING);
         }
     }
 
