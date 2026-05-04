@@ -14,6 +14,10 @@ public class GameManager {
 	private int attackWordID0;
 	private int attackWordID1;
 	private int attackWordID2;
+
+	private int sendAttackWordId;
+	private int userId;
+
 	private GameManager() {
 		randomWord = "";
 		attackWordID0 = -1;
@@ -61,5 +65,20 @@ public class GameManager {
 
 	public int getAttackWordID2() {
 		return attackWordID2;
+	}
+
+	public void setSendAttackWord(int wordID) {
+		sendAttackWordId = wordID;
+	}
+	public int getSendAttackWordId() {
+		return sendAttackWordId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }
