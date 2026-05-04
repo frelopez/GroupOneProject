@@ -76,7 +76,7 @@ public class PlayController {
 	private Label inputDisplay;
 
 	private int guessesRemaining = 7;
-	private String word = "test word";
+	private String word = "";
 	private ArrayList<Character> guessedLetters;
 	private ArrayList<Character> unguessedLetters;
 
@@ -117,7 +117,6 @@ public class PlayController {
 		}
 		updateShownWord();
 	}
-
 	public void onMouseEntered(MouseEvent mouseEvent) {
 		buttonGroupHover.setVisible(false);
 	}
