@@ -95,8 +95,7 @@ public class PlayController {
 
 	@FXML
 	public void initialize() {
-
-		//TODO get a word somehow
+		word = GameManager.getInstance().getRandomWord();
 		guessesRemaining = 7;
 		word = word.trim().toLowerCase();
 		guessedLetters = new ArrayList<>();
@@ -207,12 +206,10 @@ public class PlayController {
 		guessWordDisplay.setText(sb.toString());
 	}
 
-	//TODO handle winning. transition to SUCCESS and bring along the word. dramatic animation
 	private void win() {
 		tles.playFromStart();
 	}
 
-	//TODO handle losing. transition to FAILURE and bring along the word. dramatic animation
 	private void lose() {
 		tlef.playFromStart();
 	}

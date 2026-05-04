@@ -11,12 +11,11 @@ import javafx.stage.Stage;
 
 public class SceneFactory {
 
-	//TODO: refactor this when we learn how
 	//TODO: insert all scene constructors when they become available. it will be a simple null for now
 	public static Scene create(SceneType type, Stage stage) {
 		return switch (type) {
 			case MAIN -> new MainMenuController().buildScene();
-      case PLAY -> new PlayController().buildScene();
+      		case PLAY -> new PlayController().buildScene();
 			case LOGIN -> new LogInController().buildScene();
 			case FAILURE -> null;
 			case PROFILE -> null;
