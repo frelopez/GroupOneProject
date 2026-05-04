@@ -69,8 +69,7 @@ public class SendAttackController {
             db.insertAttack(gm.getSendAttackWordId(), gm.getUserId(), db.getUserId(topUserNames[1]));
         }else if (actionEvent.getSource() == btnSend3) {
             db.insertAttack(gm.getSendAttackWordId(), gm.getUserId(), db.getUserId(topUserNames[2]));
-        }else if (actionEvent.getSource() == btnSend4) {
-            SceneManager.getInstance().navigateTo(SceneType.COLLECTION);
         }
+        SceneManager.getInstance().navigateTo(SceneType.MAIN);
     }
 }
