@@ -100,7 +100,6 @@ public class DatabaseManager {
 		}
 	}
 
-	//TODO maybe return value based on if username already exists?
 	public int insertUser(String name, String password) {
 		String sql = "INSERT INTO Users (name, password) VALUES (?, ?)";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -118,7 +117,7 @@ public class DatabaseManager {
 		}
 		return -1;
 	}
-	//TODO checks if their exist a matching user and password in the user table returns id or -1 if none
+
 	public int loginUser(String name, String password){
 		String sql = "Select id From Users Where name = ? AND password = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -133,7 +132,7 @@ public class DatabaseManager {
 		}
 		return -1;
 	}
-	//TODO redo this once we settle on a concrete implementation
+
 	public List<String> getAllUsers() {
 		List<String> usernames = new ArrayList<>();
 		String sql = "SELECT name FROM Users ORDER BY id DESC";
@@ -148,7 +147,6 @@ public class DatabaseManager {
 		return usernames;
 	}
 
-	//TODO methods to update a user's collected words
 	public void updateUserName(int id, String name) {
 		String sql = "UPDATE Users SET name = ? WHERE id = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -162,7 +160,7 @@ public class DatabaseManager {
 
 	/**
 	 * gets the id of the User which matches the name parameter
-	 * @param name
+	 * @param name name of user to get id of
 	 * @return the id of the User, -1 if no such user or error
 	 */
 	public int getUserId(String name) {
@@ -192,9 +190,6 @@ public class DatabaseManager {
 		return 0;
 	}
 
-
-
-
 	public void deleteUser(int id) {
 		String sql = "DELETE FROM Users WHERE id = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -205,7 +200,7 @@ public class DatabaseManager {
 		}
 	}
 
-	//TODO figure out whether this should be temporary
+	//TODO temporary. get rid of before submitting
 	public void resetUserTable() {
 		String sql = "DELETE FROM Users";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -335,12 +330,80 @@ public class DatabaseManager {
 		}
 	}
 
-	//TODO figure out how to use foreign keys here. write insertAttack
-	public void insertAttack() {
-		System.out.println("NOT IMPLEMENTED, SILLY!");
+	public int insertAttack(int wordID, int originID, int destinationID) {
+		String sql = "INSERT INTO Attacks (origin_id, destination_id, word_id) VALUES (?, ?, ?)";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+			pstmt.setInt(1,originID);
+			pstmt.setInt(2,destinationID);
+			pstmt.setInt(3,wordID);
+			pstmt.executeUpdate();
+			try (ResultSet keys = pstmt.getGeneratedKeys()) {
+				if (keys.next()) {
+					return keys.getInt(1);
+				}
+			}
+		} catch(SQLException e) {
+			System.err.println("insertAttack failed: "+e.getMessage());
+		}
+		return -1;
 	}
 
-	//TODO ok this one is definitely temporary get rid of it when done using
+	public int getAttackOrigin(int attackID) {
+		String sql = "SELECT origin_id FROM Attacks WHERE id = ?";
+		int returnMe = -1;
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1,attackID);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				returnMe = rs.getInt("origin_id");
+			}
+		} catch (SQLException e) {
+			System.err.println("getAttackOrigin failed: "+e.getMessage());
+		}
+		return returnMe;
+	}
+
+	public int getAttackWord(int attackID) {
+		String sql = "SELECT word_id FROM Attacks WHERE id = ?";
+		int returnMe = -1;
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1,attackID);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				returnMe = rs.getInt("word_id");
+			}
+		} catch (SQLException e) {
+			System.err.println("getAttackWord failed: "+e.getMessage());
+		}
+		return returnMe;
+	}
+
+	public List<Integer> getAttacksToDestination(int userID) {
+		String sql = "SELECT id FROM Attacks WHERE destination_id = ?";
+		List<Integer> returnMe = new ArrayList<>();
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1,userID);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				returnMe.add(rs.getInt("id"));
+			}
+		} catch (SQLException e) {
+			System.err.println("getAttacksToDestination failed: "+e.getMessage());
+		}
+		return returnMe;
+	}
+
+	public void deleteAttack(int id) {
+		String sql = "DELETE FROM Attacks WHERE id = ?";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1,id);
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.err.println("deleteAttack failed: "+e.getMessage());
+		}
+	}
+
+	//TODO temporary. get rid of before submitting
 	public void dropEverything() {
 		String sql = "DROP TABLE Users";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
