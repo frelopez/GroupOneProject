@@ -6,6 +6,12 @@
  * @since 5/3/26
  */
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import java.io.IOException;
+
 public class GameManager {
 	private static GameManager instance;
 
@@ -17,9 +23,20 @@ public class GameManager {
 
 	private int sendAttackWordId;
 	private int userId;
+	private String getword(){
+		OkHttpClient client = new OkHttpClient();
+		Request request = new Request.Builder()
+				.url("https://random-word-api.herokuapp.com/word")
+				.build();
+		try (Response response = client.newCall(request).execute()) {
+			return response.body().string();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	private GameManager() {
-		randomWord = "";
+		randomWord = getword();
 		attackWordID0 = -1;
 		attackWordID1 = -1;
 		attackWordID2 = -1;
