@@ -17,7 +17,7 @@ public class SceneFactory {
 			case MAIN -> new MainMenuController().buildScene();
       		case PLAY -> new PlayController().buildScene();
 			case LOGIN -> new LogInController().buildScene();
-			case FAILURE -> null;
+			case FAILURE -> new FailureController().buildScene();
 			case PROFILE -> null;
 			case SUCCESS -> null;
 			case ATTACKING -> new SendAttackController().buildScene(stage);
