@@ -119,11 +119,8 @@ public class PlayAttackedController {
 		int aid0 = GameManager.getInstance().getAttackWordID0();
 		int wid0 = DatabaseManager.getInstance().getAttackWord(aid0);
 		unguessedLetters0 = new ArrayList<>();
-		if(true || aid0 !=-1 && wid0!=-1) {
+		if(aid0 !=-1 && wid0!=-1) {
 			word0 = DatabaseManager.getInstance().getWordText(wid0);
-
-			//TODO testing purposes
-			word0 = "test";
 
 			for(char c : word0.toCharArray()) {
 				if (Character.isLetter(c) && !unguessedLetters0.contains(c)) {
@@ -136,11 +133,8 @@ public class PlayAttackedController {
 		int aid1 = GameManager.getInstance().getAttackWordID1();
 		int wid1 = DatabaseManager.getInstance().getAttackWord(aid1);
 		unguessedLetters1 = new ArrayList<>();
-		if(true || aid1 !=-1 && wid1!=-1) {
+		if(aid1 !=-1 && wid1!=-1) {
 			word1 = DatabaseManager.getInstance().getWordText(wid1);
-
-			//TODO testing purposes
-			word1 = "attack";
 
 			for(char c : word1.toCharArray()) {
 				if (Character.isLetter(c) && !unguessedLetters1.contains(c)) {
@@ -153,11 +147,8 @@ public class PlayAttackedController {
 		int aid2 = GameManager.getInstance().getAttackWordID2();
 		int wid2 = DatabaseManager.getInstance().getAttackWord(aid2);
 		unguessedLetters2 = new ArrayList<>();
-		if(true || aid2 !=-1 && wid2!=-1) {
+		if(aid2 !=-1 && wid2!=-1) {
 			word2 = DatabaseManager.getInstance().getWordText(wid2);
-
-			//TODO testing purposes
-			word2 = "buzz";
 
 			for(char c : word2.toCharArray()) {
 				if (Character.isLetter(c) && !unguessedLetters2.contains(c)) {
