@@ -1,12 +1,17 @@
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,12 +34,17 @@ public class SendAttackController {
     @FXML
     private Label lbl3;
 
+    private Stage stage;;
+
     private final String[] topUserNames = new String[3];
 
     private final DatabaseManager db = DatabaseManager.getInstance();
 
+    private ImageView icon;
 
-    public Scene buildScene() {
+
+    public Scene buildScene(Stage stage) {
+        this.stage = stage;
         URL url = getClass().getResource("SendAttack.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         Scene scene = null;
@@ -48,6 +58,11 @@ public class SendAttackController {
     }
 
     public void initialize() {
+        Image image = new Image(getClass().getResourceAsStream("/notificationNode.png"));
+        icon = new ImageView(image);
+        icon.setFitWidth(32);
+        icon.setFitHeight(32);
+        icon.setPreserveRatio(true);
         lbl1.setVisible(false); lbl2.setVisible(false); lbl3.setVisible(false);
         btnSend1.setVisible(false); btnSend2.setVisible(false); btnSend3.setVisible(false);
         DatabaseManager db = DatabaseManager.getInstance();
@@ -64,12 +79,48 @@ public class SendAttackController {
     public void sendButtonOnAction(ActionEvent actionEvent) {
         GameManager gm = GameManager.getInstance();
         if (actionEvent.getSource() == btnSend1) {
+            Notifications.create()
+                    .title("Attack Has Been Sent!")
+                    .text("Your attack has been sent to "+topUserNames[0])
+                    .graphic(icon)
+                    .darkStyle()
+                    .owner(stage)
+                    .position(Pos.TOP_RIGHT)
+                    .show();
+
             db.insertAttack(gm.getSendAttackWordId(), gm.getUserId(), db.getUserId(topUserNames[0]));
+
+            db.deleteCollectedWord(gm.getUserId(), gm.getSendAttackWordId());
+
         }else if (actionEvent.getSource() == btnSend2) {
+            Notifications.create()
+                    .title("Attack Has Been Sent!")
+                    .text("Your attack has been sent to "+topUserNames[1])
+                    .graphic(icon)
+                    .darkStyle()
+                    .owner(stage)
+                    .position(Pos.TOP_RIGHT)
+                    .show();
+
             db.insertAttack(gm.getSendAttackWordId(), gm.getUserId(), db.getUserId(topUserNames[1]));
+
+            db.deleteCollectedWord(gm.getUserId(), gm.getSendAttackWordId());
+
         }else if (actionEvent.getSource() == btnSend3) {
+            Notifications.create()
+                    .title("Attack Has Been Sent!")
+                    .text("Your attack has been sent to "+topUserNames[2])
+                    .graphic(icon)
+                    .darkStyle()
+                    .owner(stage)
+                    .position(Pos.TOP_RIGHT)
+                    .show();
+
             db.insertAttack(gm.getSendAttackWordId(), gm.getUserId(), db.getUserId(topUserNames[2]));
+
+            db.deleteCollectedWord(gm.getUserId(), gm.getSendAttackWordId());
         }
+
         SceneManager.getInstance().navigateTo(SceneType.MAIN);
     }
 }
