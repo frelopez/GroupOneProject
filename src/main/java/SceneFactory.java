@@ -19,7 +19,7 @@ public class SceneFactory {
 			case LOGIN -> new LogInController().buildScene();
 			case FAILURE -> new FailureController().buildScene();
 			case PROFILE -> null;
-			case SUCCESS -> null;
+			case SUCCESS -> new SuccessController().buildScene();
 			case ATTACKING -> new SendAttackController().buildScene(stage);
 			case COLLECTION -> new CollectionController().buildScene();
 			case LEADERBOARD -> new LeaderboardController().buildScene();

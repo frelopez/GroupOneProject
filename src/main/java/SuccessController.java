@@ -8,17 +8,17 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * FailureController.java
- * Controls the failure scene shown after the user loses a hangman puzzle.
+ * SuccessController.java
+ * Controls the success scene shown after the user wins a hangman puzzle.
  *
- * Displays the missed word, score change, and allows the user
+ * Displays the solved word, score change, and allows the user
  * to return to the main menu.
  *
  * @author Daniel Barker
  * @version 0.1.0
  * @since 5/4/26
  */
-public class FailureController {
+public class SuccessController {
     @FXML
     private Label wordLabel;
 
@@ -26,7 +26,7 @@ public class FailureController {
     private Label scoreLabel;
 
     public Scene buildScene() {
-        URL fxmlURL = getClass().getResource("/Failure.fxml");
+        URL fxmlURL = getClass().getResource("/Success.fxml");
         FXMLLoader loader = new FXMLLoader(fxmlURL);
         Scene scene = null;
 
@@ -34,7 +34,7 @@ public class FailureController {
             Parent root = loader.load();
             scene = new Scene(root, 640, 480);
         } catch (IOException e) {
-            System.err.println("FailureController buildScene failed: " + e.getMessage());
+            System.err.println("SuccessController buildScene failed: " + e.getMessage());
         }
 
         return scene;
@@ -52,7 +52,7 @@ public class FailureController {
             wordLabel.setText("Word was: " + word);
         }
 
-        scoreLabel.setText("Score change: -" + Math.abs(gm.getEarnedScore()));
+        scoreLabel.setText("Score change: +" + gm.getEarnedScore());
     }
 
     public void continueToMenu() {

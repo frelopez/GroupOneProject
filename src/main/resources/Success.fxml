@@ -10,10 +10,10 @@
       prefWidth="640.0"
       xmlns="http://javafx.com/javafx/17.0.12"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="FailureController">
+      fx:controller="SuccessController">
 
     <children>
-        <Label text="Failure..."
+        <Label text="Success!"
                style="-fx-font-size: 32px; -fx-font-weight: bold;" />
 
         <Label fx:id="wordLabel"
