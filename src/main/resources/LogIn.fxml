@@ -2,27 +2,52 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogInController">
-   <left>
-      <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #263F73;" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" layoutX="2.0" layoutY="71.0" prefHeight="27.0" prefWidth="225.0" text="Welcome to Hang Your Friends" textFill="WHITE" />
-         </children>
-      </AnchorPane>
-   </left>
    <right>
-      <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="-39.0" layoutY="73.0" prefHeight="25.0" prefWidth="335.0" text="Log In" />
-            <Label layoutX="54.0" layoutY="124.0" text="Username" />
-            <Label layoutX="55.0" layoutY="159.0" text="Password" />
-            <TextField fx:id="username" layoutX="136.0" layoutY="120.0" />
-            <PasswordField fx:id="password" layoutX="136.0" layoutY="155.0" />
-            <Button fx:id="LogInButtone" layoutX="54.0" layoutY="206.0" mnemonicParsing="false" onAction="#LogInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Log In" />
-            <Button fx:id="SignInButton1" layoutX="54.0" layoutY="238.0" mnemonicParsing="false" onAction="#SignInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Sign Up" />
+            <Label alignment="CENTER" layoutX="59.0" layoutY="73.0" prefHeight="25.0" prefWidth="215.0" text="Log In">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+            <Label layoutX="42.0" layoutY="127.0" text="Username">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+            <Label layoutX="43.0" layoutY="162.0" text="Password">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+            <TextField fx:id="username" layoutX="119.0" layoutY="125.0" prefHeight="22.0" prefWidth="172.0">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font></TextField>
+            <PasswordField fx:id="password" layoutX="119.0" layoutY="160.0" prefHeight="22.0" prefWidth="172.0">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font></PasswordField>
+            <Button fx:id="LogInButtone" layoutX="42.0" layoutY="207.0" mnemonicParsing="false" onAction="#LogInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Log In">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Button>
+            <Button fx:id="SignInButton1" layoutX="42.0" layoutY="239.0" mnemonicParsing="false" onAction="#SignInButtonOnAction" prefHeight="26.0" prefWidth="249.0" text="Sign Up">
+            <font>
+               <Font name="Bookman Old Style" size="12.0" />
+            </font></Button>
             <Label fx:id="LogInMessage" layoutX="96.0" layoutY="98.0" prefHeight="17.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
    </right>
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="268.0" style="-fx-background-color: #a99cff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="22.0" layoutY="71.0" prefHeight="27.0" prefWidth="225.0" text="Welcome to Hang Your Friends" textFill="#1e1c2d">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="12.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
