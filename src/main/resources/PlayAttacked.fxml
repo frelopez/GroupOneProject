@@ -12,6 +12,20 @@
 <AnchorPane maxHeight="480" maxWidth="640" minHeight="480" minWidth="640" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayAttackedController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" height="480.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="640.0" />
+      <SVGPath fx:id="bgfire0" content="M0,133 C12,108 11,104 41,96 6,120 25,140 45,110 46,128 27,142 30,150 32,155 42,153 54,135 55,143 53,154 40,161 68,148 66,125 87,119 74,136 76,157 114,106 109,125 87,152 91,155 102,162 117,115 135,112 118,132 135,150 141,130 146,106 151,104 181,96 146,120 165,140 185,110 186,128 167,142 170,150 172,155 182,153 194,135 195,143 193,154 180,161 208,148 206,125 227,119 214,136 216,157 254,106 249,125 227,152 231,155 242,162 257,115 275,112 258,132 275,150 281,130 286,106 291,104 321,96 286,120 305,140 325,110 326,128 307,142 310,150 312,155 322,153 334,135 335,143 333,154 320,161 348,148 346,125 367,119 354,136 356,157 394,106 389,125 367,152 371,155 382,162 397,115 415,112 398,132 415,150 421,130 426,106 431,104 461,96 426,120 445,140 465,110 466,128 447,142 450,150 452,155 462,153 474,135 475,143 473,154 460,161 488,148 486,125 507,119 494,136 496,157 534,106 529,125 507,152 511,155 522,162 537,115 555,112 538,132 555,150 561,130 566,106 571,104 601,96 566,120 585,140 605,110 606,128 587,142 590,150 592,155 602,153 614,135 615,143 613,154 600,161 628,148 625,129 640,121 L640,480 0,480 " fill="#ba0000">
+         <effect>
+            <Glow level="1.0" />
+         </effect></SVGPath>
+      <SVGPath fx:id="bgfire1" content="M0,138 C9,117 -8,109 25,100 4,119 18,129 30,116 37,125 16,141 32,145 43,146 29,139 53,119 50,128 58,138 70,129 78,123 91,110 108,105 85,120 87,143 129,98 128,127 100,130 104,138 106,141 119,137 126,132 118,151 98,149 103,155 106,159 136,147 140,137 146,118 132,109 165,100 144,119 158,129 170,116 177,125 156,141 172,145 183,146 169,139 193,119 190,128 198,138 210,129 218,123 231,110 248,105 225,120 247,143 269,98 268,127 240,130 244,138 246,141 259,137 266,132 258,151 238,149 243,155 246,159 276,147 280,137 286,118 272,109 305,100 284,119 298,129 310,116 317,125 296,141 312,145 323,146 309,139 333,119 330,128 338,138 350,129 358,123 371,110 388,105 365,120 387,143 409,98 408,127 380,130 384,138 386,141 399,137 406,132 398,151 378,149 383,155 386,159 416,147 420,137 426,118 412,109 445,100 424,119 438,129 450,116 457,125 436,141 452,145 463,146 449,139 473,119 470,128 478,138 490,129 498,123 511,110 528,105 505,120 527,143 549,98 548,127 520,130 524,138 526,141 539,137 546,132 538,151 518,149 523,155 526,159 556,147 560,137 566,118 552,109 585,100 564,119 578,129 590,116 597,125 576,141 592,145 603,146 589,139 613,119 610,128 602,149 640,120 L640,480 0,480" fill="#ba0000">
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </SVGPath>
+      <SVGPath fx:id="bgfire2" content="M0,163 C19,156 28,139 47,127 38,142 43,156 63,127 65,162 90,107 134,101 91,132 110,146 130,114 126,141 113,146 109,150 105,156 112,171 133,135 131,154 128,160 120,167 149,166 168,139 187,127 178,142 183,156 203,127 205,162 230,107 274,101 231,132 250,146 270,114 266,141 253,146 249,150 245,156 252,171 273,135 271,154 268,160 260,167 289,166 308,139 327,127 318,142 323,156 343,127 345,162 370,107 414,101 371,132 390,146 410,114 406,141 393,146 389,150 385,156 392,171 413,135 411,154 408,160 400,167 429,166 448,139 467,127 458,142 463,156 483,127 485,162 510,107 554,101 511,132 530,146 550,114 546,141 533,146 529,150 525,156 532,171 553,135 551,154 548,160 540,167 569,166 588,139 607,127 598,142 603,156 623,127 625,162 629,150 640,138 L640,480 0,480 " fill="#ba0000">
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </SVGPath>
         <Rectangle fx:id="glow" arcHeight="5.0" arcWidth="5.0" height="304.0" layoutX="-47.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="302.0">
             <fill>
                 <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
@@ -162,17 +176,47 @@
                 </Group>
             </children>
         </Group>
-        <Group fx:id="startWarning" layoutY="100.0" visible="false">
-            <children>
-                <Label contentDisplay="CENTER" text="WARNING WARNING WARNING" textFill="#000001">
-                    <font>
+      <Group fx:id="startWarning" layoutX="-242.0" layoutY="113.0">
+         <children>
+              <Group>
+                  <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb71f" height="109.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                      <Label contentDisplay="CENTER" layoutX="3.0" layoutY="1.0" text="WARNING WARNING WARNING" textFill="#000001">
+                          <font>
+                              <Font name="Bookman Old Style Bold" size="64.0" />
+                          </font>
+                          <padding>
+                              <Insets left="20.0" top="12.0" />
+                          </padding>
+                  </Label>
+                  </children>
+              </Group>
+            <Group fx:id="startWarningBloom" opacity="0.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb71f" height="109.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Label contentDisplay="CENTER" layoutX="3.0" layoutY="1.0" text="WARNING WARNING WARNING" textFill="#000001">
+                     <font>
                         <Font name="Bookman Old Style Bold" size="64.0" />
-                    </font>
-                    <padding>
+                     </font>
+                     <padding>
                         <Insets left="20.0" top="12.0" />
-                    </padding></Label>
-            </children>
-        </Group>
+                     </padding>
+                  </Label>
+               </children>
+               <effect>
+                  <Bloom threshold="0.19">
+                     <input>
+                        <GaussianBlur radius="3.0" />
+                     </input>
+                  </Bloom>
+               </effect>
+            </Group>
+         </children>
+      </Group>
         <Rectangle fx:id="endTransitionTop" arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="-69.0" layoutY="-531.0" rotate="11.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="877.0" />
         <Rectangle fx:id="endTransitionBottom" arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="-80.0" layoutY="632.0" rotate="15.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="877.0" />
     </children>

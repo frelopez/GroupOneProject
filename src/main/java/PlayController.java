@@ -33,10 +33,8 @@ public class PlayController {
 	private Timeline tlef;
 	@FXML
 	private Group background;
-	private TranslateTransition ttbg;
 	@FXML
 	private Group startArrow;
-	private SequentialTransition stsa;
 	@FXML
 	private Group buttonGroupHover;
 	@FXML
@@ -44,27 +42,20 @@ public class PlayController {
 	private SequentialTransition stbg;
 	@FXML
 	private Rectangle glow;
-	private TranslateTransition ttg;
 	@FXML
 	private Label guessedLettersLabel;
 	@FXML
 	private SVGPath indicatorHead;
-	private TranslateTransition tth;
 	@FXML
 	private SVGPath indicatorBody;
-	private TranslateTransition ttb;
 	@FXML
 	private SVGPath indicatorArmL;
-	private TranslateTransition ttal;
 	@FXML
 	private SVGPath indicatorArmR;
-	private TranslateTransition ttar;
 	@FXML
 	private SVGPath indicatorLegL;
-	private TranslateTransition ttll;
 	@FXML
 	private SVGPath indicatorLegR;
-	private TranslateTransition ttlr;
 	@FXML
 	private Label guessWordDisplay;
 	@FXML
@@ -215,17 +206,16 @@ public class PlayController {
 	}
 
 	private void resetAnimations() {
-		if(stsa==null) {
-			TranslateTransition ttArrow0 = new TranslateTransition(Duration.seconds(.25),startArrow);
-			ttArrow0.setFromX(-750);
-			ttArrow0.setToX(-50);
-			TranslateTransition ttArrow1 = new TranslateTransition(Duration.seconds(1),startArrow);
-			ttArrow1.setToX(50);
-			TranslateTransition ttArrow2 = new TranslateTransition(Duration.seconds(.25),startArrow);
-			ttArrow2.setToX(750);
-			stsa = new SequentialTransition(ttArrow0, ttArrow1, ttArrow2);
-		}
+		TranslateTransition ttArrow0 = new TranslateTransition(Duration.seconds(.25),startArrow);
+		ttArrow0.setFromX(-750);
+		ttArrow0.setToX(-50);
+		TranslateTransition ttArrow1 = new TranslateTransition(Duration.seconds(1),startArrow);
+		ttArrow1.setToX(50);
+		TranslateTransition ttArrow2 = new TranslateTransition(Duration.seconds(.25),startArrow);
+		ttArrow2.setToX(750);
+		SequentialTransition stsa = new SequentialTransition(ttArrow0, ttArrow1, ttArrow2);
 		stsa.playFromStart();
+
 		if(stbg==null) {
 			TranslateTransition ttButtonShake0 = new TranslateTransition(Duration.seconds(.05),buttonGroup);
 			ttButtonShake0.setToX(10);
@@ -235,6 +225,7 @@ public class PlayController {
 			ttButtonShake2.setToX(0);
 			stbg = new SequentialTransition(ttButtonShake0, ttButtonShake1, ttButtonShake2);
 		}
+
 		if(tles==null || tlef==null) {
 			TranslateTransition ttBarTop0 = new TranslateTransition(Duration.seconds(.25),endTransitionTop);
 			ttBarTop0.setToY(250);
@@ -259,6 +250,7 @@ public class PlayController {
 					new KeyFrame(Duration.seconds(1), event -> SceneManager.getInstance().navigateTo(SceneType.FAILURE))
 			);
 		}
+
 		if(ft==null) {
 			ft = new FadeTransition(Duration.seconds(.75), pulse);
 			ft.setFromValue(0);
@@ -268,68 +260,61 @@ public class PlayController {
 		}
 		ft.jumpTo(Duration.ZERO);
 		ft.stop();
-		if(ttbg==null) {
-			ttbg = new TranslateTransition(Duration.seconds(20),background);
-			ttbg.setFromX(0);
-			ttbg.setToX(-900);
-			ttbg.setCycleCount(Animation.INDEFINITE);
-		}
+
+		TranslateTransition ttbg = new TranslateTransition(Duration.seconds(20),background);
+		ttbg.setFromX(0);
+		ttbg.setToX(-900);
+		ttbg.setCycleCount(Animation.INDEFINITE);
 		ttbg.play();
-		if(ttg==null) {
-			ttg = new TranslateTransition(Duration.seconds(5), glow);
-			ttg.setByY(20);
-			ttg.setAutoReverse(true);
-			ttg.setCycleCount(Animation.INDEFINITE);
-		}
+
+		TranslateTransition ttg = new TranslateTransition(Duration.seconds(5), glow);
+		ttg.setByY(20);
+		ttg.setAutoReverse(true);
+		ttg.setCycleCount(Animation.INDEFINITE);
 		ttg.playFromStart();
+
 		final int WAVE_PERIOD = 2;
 		final int WAVINESS = 10;
-		if(tth==null) {
-			tth = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorHead);
-			tth.setByX(4);
-			tth.setAutoReverse(true);
-			tth.setCycleCount(Animation.INDEFINITE);
-		}
+
+		TranslateTransition tth = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorHead);
+		tth.setByX(4);
+		tth.setAutoReverse(true);
+		tth.setCycleCount(Animation.INDEFINITE);
 		tth.playFromStart();
-		if(ttb==null) {
-			ttb = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorBody);
-			ttb.setByX(4);
-			ttb.setAutoReverse(true);
-			ttb.setCycleCount(Animation.INDEFINITE);
-			ttb.setDelay(Duration.millis(WAVINESS*(indicatorBody.getLayoutY()-indicatorHead.getLayoutY())));
-		}
+
+		TranslateTransition ttb = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorBody);
+		ttb.setByX(4);
+		ttb.setAutoReverse(true);
+		ttb.setCycleCount(Animation.INDEFINITE);
+		ttb.setDelay(Duration.millis(WAVINESS*(indicatorBody.getLayoutY()-indicatorHead.getLayoutY())));
 		ttb.playFromStart();
-		if(ttal==null) {
-			ttal = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorArmL);
-			ttal.setByX(4);
-			ttal.setAutoReverse(true);
-			ttal.setCycleCount(Animation.INDEFINITE);
-			ttal.setDelay(Duration.millis(WAVINESS*(indicatorArmL.getLayoutY()-indicatorHead.getLayoutY())));
-		}
+
+		TranslateTransition ttal = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorArmL);
+		ttal.setByX(4);
+		ttal.setAutoReverse(true);
+		ttal.setCycleCount(Animation.INDEFINITE);
+		ttal.setDelay(Duration.millis(WAVINESS*(indicatorArmL.getLayoutY()-indicatorHead.getLayoutY())));
 		ttal.playFromStart();
-		if(ttar==null) {
-			ttar = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorArmR);
-			ttar.setByX(4);
-			ttar.setAutoReverse(true);
-			ttar.setCycleCount(Animation.INDEFINITE);
-			ttar.setDelay(Duration.millis(WAVINESS*(indicatorArmR.getLayoutY()-indicatorHead.getLayoutY())));
-		}
+
+		TranslateTransition ttar = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorArmR);
+		ttar.setByX(4);
+		ttar.setAutoReverse(true);
+		ttar.setCycleCount(Animation.INDEFINITE);
+		ttar.setDelay(Duration.millis(WAVINESS*(indicatorArmR.getLayoutY()-indicatorHead.getLayoutY())));
 		ttar.playFromStart();
-		if(ttll==null) {
-			ttll = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorLegL);
-			ttll.setByX(4);
-			ttll.setAutoReverse(true);
-			ttll.setCycleCount(Animation.INDEFINITE);
-			ttll.setDelay(Duration.millis(WAVINESS*(indicatorLegL.getLayoutY()-indicatorHead.getLayoutY())));
-		}
+
+		TranslateTransition ttll = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorLegL);
+		ttll.setByX(4);
+		ttll.setAutoReverse(true);
+		ttll.setCycleCount(Animation.INDEFINITE);
+		ttll.setDelay(Duration.millis(WAVINESS*(indicatorLegL.getLayoutY()-indicatorHead.getLayoutY())));
 		ttll.playFromStart();
-		if(ttlr==null) {
-			ttlr = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorLegR);
-			ttlr.setByX(4);
-			ttlr.setAutoReverse(true);
-			ttlr.setCycleCount(Animation.INDEFINITE);
-			ttlr.setDelay(Duration.millis(WAVINESS*(indicatorLegR.getLayoutY()-indicatorHead.getLayoutY())));
-		}
+
+		TranslateTransition ttlr = new TranslateTransition(Duration.seconds(WAVE_PERIOD), indicatorLegR);
+		ttlr.setByX(4);
+		ttlr.setAutoReverse(true);
+		ttlr.setCycleCount(Animation.INDEFINITE);
+		ttlr.setDelay(Duration.millis(WAVINESS*(indicatorLegR.getLayoutY()-indicatorHead.getLayoutY())));
 		ttlr.playFromStart();
 	}
 }

@@ -17,6 +17,7 @@ public class Main extends Application {
         stage.setTitle("Hang Your Friends, Man!");
         stage.setMaxHeight(STAGE_HEIGHT); stage.setMinHeight(STAGE_HEIGHT);
         stage.setMaxWidth(STAGE_WIDTH); stage.setMinWidth(STAGE_WIDTH);
+        stage.setResizable(false);
         SceneManager.init(stage);
         SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         stage.show();
