@@ -2,27 +2,55 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpController">
     <left>
-        <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: #263F73;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="268.0" style="-fx-background-color: #a99cff;" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" layoutX="2.0" layoutY="71.0" prefHeight="27.0" prefWidth="225.0" text="Welcome to Hang Your Friends" textFill="WHITE" />
+                <Label alignment="CENTER" layoutX="22.0" layoutY="71.0" prefHeight="27.0" prefWidth="225.0" text="Welcome to Hang Your Friends" textFill="#1e1c2d">
+               <font>
+                  <Font name="Bookman Old Style Bold" size="12.0" />
+               </font></Label>
             </children>
         </AnchorPane>
     </left>
     <right>
-        <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="400.0" prefWidth="332.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" layoutX="-39.0" layoutY="73.0" prefHeight="25.0" prefWidth="335.0" text="Create Account" />
-                <Label layoutX="54.0" layoutY="124.0" text="Username" />
-                <Label layoutX="55.0" layoutY="159.0" text="Password" />
-                <TextField fx:id="Username" layoutX="136.0" layoutY="120.0" />
-                <PasswordField fx:id="Password" layoutX="136.0" layoutY="155.0" />
+                <Label alignment="CENTER" layoutX="43.0" layoutY="73.0" prefHeight="25.0" prefWidth="249.0" text="Create Account">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+                <Label layoutX="40.0" layoutY="124.0" text="Username">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+                <Label layoutX="41.0" layoutY="159.0" text="Password">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+                <TextField fx:id="Username" layoutX="155.0" layoutY="120.0" prefHeight="25.0" prefWidth="130.0">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font></TextField>
+                <PasswordField fx:id="Password" layoutX="156.0" layoutY="155.0" prefHeight="25.0" prefWidth="129.0">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font></PasswordField>
                 <Label fx:id="SignInMessage" alignment="CENTER" layoutX="53.0" layoutY="242.0" prefHeight="17.0" prefWidth="251.0" />
-                <Label layoutX="6.0" layoutY="192.0" prefHeight="17.0" prefWidth="112.0" text="Re-Enter Password" />
-                <PasswordField fx:id="Repassword" layoutX="136.0" layoutY="187.0" />
-                <Button fx:id="SignUpButton" layoutX="41.0" layoutY="229.0" mnemonicParsing="false" onAction="#SignUpButtonOnAction" prefHeight="25.0" prefWidth="250.0" text="Sign Up" />
+                <Label layoutX="41.0" layoutY="192.0" prefHeight="17.0" prefWidth="112.0" text="Re-Enter Password">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Label>
+                <PasswordField fx:id="Repassword" layoutX="155.0" layoutY="187.0" prefHeight="25.0" prefWidth="130.0">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font></PasswordField>
+                <Button fx:id="SignUpButton" layoutX="41.0" layoutY="229.0" mnemonicParsing="false" onAction="#SignUpButtonOnAction" prefHeight="25.0" prefWidth="250.0" text="Sign Up">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font></Button>
             <Label fx:id="label" layoutX="57.0" layoutY="98.0" prefHeight="17.0" prefWidth="238.0" />
             </children>
         </AnchorPane>
