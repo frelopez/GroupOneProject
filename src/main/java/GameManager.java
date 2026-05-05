@@ -20,23 +20,27 @@ public class GameManager {
 	private int attackWordID0;
 	private int attackWordID1;
 	private int attackWordID2;
+	private int earnedScore;
+	private final static char[] COMMON_LETTERS = {'e','t','a','o','n','r','i','s','h','d'};
 
-	private int sendAttackWordId;
+	private int selectedAttackWordId;
 	private int userId;
-	private String getword(){
+
+	public void fetchWord(){
 		OkHttpClient client = new OkHttpClient();
 		Request request = new Request.Builder()
-				.url("https://random-word-api.herokuapp.com/word")
+				.url("https://random-word-api.herokuapp.com/word?diff=2")
 				.build();
 		try (Response response = client.newCall(request).execute()) {
-			return response.body().string();
+			String s = response.body().string().trim().toLowerCase();
+			setRandomWord(s.substring(2,s.length()-2));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	private GameManager() {
-		randomWord = getword();
+		randomWord = null;
 		attackWordID0 = -1;
 		attackWordID1 = -1;
 		attackWordID2 = -1;
@@ -49,14 +53,15 @@ public class GameManager {
 		return instance;
 	}
 
-	//TODO a fetchRandomWord method that gets a word from SOME external library.
-	//TODO put that word into randomWord and return it
-
 	public void setRandomWord(String word) {
 		randomWord = word;
+		calculateEarnedScore();
 	}
 
 	public String getRandomWord() {
+		if(randomWord==null) {
+			fetchWord();
+		}
 		return randomWord;
 	}
 
@@ -84,11 +89,35 @@ public class GameManager {
 		return attackWordID2;
 	}
 
+	private void calculateEarnedScore() {
+		int s = 20;
+		for(char c: randomWord.toCharArray()) {
+			for(char d: COMMON_LETTERS) {
+				if(c==d) {
+					s--;
+					break;
+				}
+			}
+		}
+		if(randomWord.length()==4) {
+			s*=2;
+		} else if(randomWord.length()==5 || randomWord.length()==3) {
+			s=(int)((double)s*1.5);
+		} else if(randomWord.length()==6) {
+			s=(int)((double)s*1.2);
+		}
+		earnedScore = s;
+	}
+
+	public void loseScore() { earnedScore-=50; }
+
+	public int getEarnedScore() { return earnedScore; }
+
 	public void setSendAttackWord(int wordID) {
-		sendAttackWordId = wordID;
+		selectedAttackWordId = wordID;
 	}
 	public int getSendAttackWordId() {
-		return sendAttackWordId;
+		return selectedAttackWordId;
 	}
 
 	public int getUserId() {

@@ -1,14 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="PlayAttackedController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="480" maxWidth="640" minHeight="480" minWidth="640" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayAttackedController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="480.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="640.0" />
+        <Rectangle fx:id="glow" arcHeight="5.0" arcWidth="5.0" height="304.0" layoutX="-47.0" layoutY="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="302.0">
+            <fill>
+                <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="1.0" green="0.5" blue="0.5" opacity="0.6142241358757019" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </fill>
+        </Rectangle>
+        <SVGPath fx:id="indicatorHead" content="M3,10 0,41 20, 59 42,37 30,0" layoutX="84.0" layoutY="80.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect></SVGPath>
+        <SVGPath fx:id="indicatorBody" content="M2,0 0,64 11,58 10,9" layoutX="95.0" layoutY="141.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect></SVGPath>
+        <SVGPath fx:id="indicatorArmL" content="M0,46 42,24 49,0" layoutX="43.0" layoutY="134.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect></SVGPath>
+        <SVGPath fx:id="indicatorArmR" content="M0,0 5,19 43,39" layoutX="113.0" layoutY="145.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect></SVGPath>
+        <SVGPath fx:id="indicatorLegL" content="M0,54 38,18 32,11 30,0" layoutX="55.0" layoutY="190.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect></SVGPath>
+        <SVGPath fx:id="indicatorLegR" content="M0,16 30,55 8,0 7,10" layoutX="105.0" layoutY="200.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect></SVGPath>
+        <SVGPath content="M25,0 36,21 27,212 10,209 0,226 88,236 85,219 48,215 56,22 131,25 153,9" layoutX="-15.0" layoutY="44.0">
+            <effect>
+                <GaussianBlur radius="3.0" />
+            </effect>
+            <fill>
+                <LinearGradient endX="0.026004728132387706" endY="0.9739952718676124" startX="0.03309692671394799" startY="0.5295508274231681">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color opacity="0.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </SVGPath>
+        <Rectangle fx:id="pulse" arcHeight="5.0" arcWidth="5.0" height="480.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <fill>
+                <LinearGradient endX="1.0" endY="0.016548463356973995" startX="1.0" startY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.6627451181411743" green="0.6117647290229797" blue="1.0" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <Circle layoutX="117.0" layoutY="325.0" mouseTransparent="true" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+        <Circle layoutX="434.0" layoutY="325.0" mouseTransparent="true" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="32.0" layoutX="117.0" layoutY="309.0" mouseTransparent="true" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="317.0" />
+        <TextField fx:id="textInputField" layoutX="101.0" layoutY="308.0" onAction="#onGuess" onKeyTyped="#onKeyTyped" opacity="0.0" prefHeight="25.0" prefWidth="349.0" promptText="Enter Letter or Word">
+            <font>
+                <Font name="Consolas" size="18.0" />
+            </font>
+        </TextField>
+        <Label fx:id="guessWordDisplay" layoutX="206.0" layoutY="69.0" prefHeight="22.0" prefWidth="430.0" text="___________" textFill="WHITE">
+            <font>
+                <Font name="Consolas" size="36.0" />
+            </font></Label>
+      <Label fx:id="attackWordDisplay0" layoutX="186.0" layoutY="139.0" prefHeight="22.0" prefWidth="430.0" text="___________" textFill="WHITE">
+         <font>
+            <Font name="Consolas" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="attackWordDisplay1" layoutX="196.0" layoutY="179.0" prefHeight="22.0" prefWidth="430.0" text="___________" textFill="WHITE">
+         <font>
+            <Font name="Consolas" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="attackWordDisplay2" layoutX="176.0" layoutY="219.0" prefHeight="22.0" prefWidth="430.0" text="___________" textFill="WHITE">
+         <font>
+            <Font name="Consolas" size="36.0" />
+         </font>
+      </Label>
+        <Label fx:id="guessedLettersLabel" layoutX="101.0" layoutY="357.0" prefHeight="22.0" prefWidth="349.0" text="Letters Guessed: " textFill="WHITE">
+            <font>
+                <Font name="Consolas" size="18.0" />
+            </font></Label>
+        <Label fx:id="inputDisplay" layoutX="113.0" layoutY="314.0" mouseTransparent="true" prefHeight="22.0" prefWidth="325.0" text="Enter Letter or Word" textFill="#a99cff">
+            <font>
+                <Font name="Consolas" size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="465.0" layoutY="308.0" mnemonicParsing="false" onAction="#onGuess" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" opacity="0.0" text="GUESS" textAlignment="CENTER">
+            <font>
+                <Font name="Consolas" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor></Button>
+        <Group fx:id="buttonGroup" layoutX="462.0" layoutY="310.0">
+            <children>
+                <Group mouseTransparent="true">
+                    <children>
+                        <SVGPath content="M0,0 80,-10 90,25 -10,50" fill="#a99cff" />
+                        <SVGPath content="M06,06 78,-8 76,24 -2,45" />
+                        <Label layoutX="8.0" layoutY="4.0" rotate="-11.0" text="GUESS" textFill="#a99cff">
+                            <font>
+                                <Font name="Bookman Old Style Bold" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+                <Group fx:id="buttonGroupHover" mouseTransparent="true">
+                    <children>
+                        <SVGPath content="M0,0 80,-10 90,25 -10,50" />
+                        <SVGPath content="M06,06 78,-8 76,24 -2,45" fill="#a99cff" />
+                        <Label layoutX="8.0" layoutY="4.0" rotate="-11.0" text="GUESS" textFill="#000001">
+                            <font>
+                                <Font name="Bookman Old Style Bold" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Group>
+            </children>
+        </Group>
+        <Group fx:id="startWarning" layoutY="100.0" visible="false">
+            <children>
+                <Label contentDisplay="CENTER" text="WARNING WARNING WARNING" textFill="#000001">
+                    <font>
+                        <Font name="Bookman Old Style Bold" size="64.0" />
+                    </font>
+                    <padding>
+                        <Insets left="20.0" top="12.0" />
+                    </padding></Label>
+            </children>
+        </Group>
+        <Rectangle fx:id="endTransitionTop" arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="-69.0" layoutY="-531.0" rotate="11.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="877.0" />
+        <Rectangle fx:id="endTransitionBottom" arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="-80.0" layoutY="632.0" rotate="15.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="877.0" />
+    </children>
 </AnchorPane>
