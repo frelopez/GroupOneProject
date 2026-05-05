@@ -29,7 +29,7 @@ public class SceneManager {
 
     public void navigateTo(SceneType type) {
         Scene scene;
-        if(type==SceneType.PLAY || type==SceneType.PLAY_ATTACKED) { //put SceneTypes in here if they shouldn't get cached
+        if(type==SceneType.PLAY || type==SceneType.PLAY_ATTACKED || type==SceneType.PROFILE) { //put SceneTypes in here if they shouldn't get cached
             scene = SceneFactory.create(type, stage);
         }
         else {

@@ -48,6 +48,9 @@ public class ProfileController {
     public void SetOnActionLeaderboard(ActionEvent e){
         SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);
     }
+    public void SetOnActionLogOut(ActionEvent e){
+        SceneManager.getInstance().navigateTo(SceneType.LOGIN);
+    }
 
 
 
