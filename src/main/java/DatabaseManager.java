@@ -249,6 +249,7 @@ public class DatabaseManager {
 			System.err.println("addCollectedWord failed: " + e.getMessage());
 		}
 	}
+
 	public int getWordId(String word) {
 		String sql = "SELECT id FROM Words WHERE word = ?";
 		int id = -1;
@@ -262,6 +263,21 @@ public class DatabaseManager {
 			System.err.println("getWordId failed: " + e.getMessage());
 		}
 		return id;
+	}
+
+	public String getWordText(int id) {
+		String sql = "SELECT word from Words WHERE id = ?";
+		String returnMe = null;
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				returnMe = rs.getString("word");
+			}
+		} catch(SQLException e) {
+			System.err.println("getWordText failed: " + e.getMessage());
+		}
+		return returnMe;
 	}
 
 	public List<String> getCollectedWordsForUser(int userId) {

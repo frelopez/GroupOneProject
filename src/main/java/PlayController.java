@@ -95,9 +95,9 @@ public class PlayController {
 
 	@FXML
 	public void initialize() {
+		GameManager.getInstance().fetchWord();
 		word = GameManager.getInstance().getRandomWord();
 		guessesRemaining = 7;
-		word = word.trim().toLowerCase();
 		guessedLetters = new ArrayList<>();
 		unguessedLetters = new ArrayList<>();
 		resetAnimations();
@@ -210,6 +210,7 @@ public class PlayController {
 	}
 
 	private void lose() {
+		GameManager.getInstance().loseScore();
 		tlef.playFromStart();
 	}
 
