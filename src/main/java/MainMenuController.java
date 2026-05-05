@@ -37,4 +37,10 @@ public class MainMenuController {
     public void closeApp() {
         System.exit(0);
     }
+
+    public void playGame() { SceneManager.getInstance().navigateTo(SceneType.PLAY); }
+
+    public void openProfile() { SceneManager.getInstance().navigateTo(SceneType.PROFILE); }
+
+    public void openLeaderboard() { SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD); }
 }
