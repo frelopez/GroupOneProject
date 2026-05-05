@@ -26,6 +26,12 @@ import java.util.ArrayList;
 
 public class PlayAttackedController {
 	@FXML
+	private SVGPath bgfire0;
+	@FXML
+	private SVGPath bgfire1;
+	@FXML
+	private SVGPath bgfire2;
+	@FXML
 	private Rectangle endTransitionTop;
 	@FXML
 	private Rectangle endTransitionBottom;
@@ -346,6 +352,16 @@ public class PlayAttackedController {
 	}
 
 	private void resetAnimations() {
+		Timeline tlbf = new Timeline(
+				new KeyFrame(Duration.seconds(.5), event -> bgfire1.setVisible(true)),
+				new KeyFrame(Duration.seconds(.5), event -> bgfire0.setVisible(false)),
+				new KeyFrame(Duration.seconds(1), event -> bgfire2.setVisible(true)),
+				new KeyFrame(Duration.seconds(1), event -> bgfire1.setVisible(false)),
+				new KeyFrame(Duration.seconds(1.5), event -> bgfire0.setVisible(true)),
+				new KeyFrame(Duration.seconds(1.5), event -> bgfire2.setVisible(false))
+		);
+		tlbf.setCycleCount(Animation.INDEFINITE);
+		tlbf.playFromStart();
 		if(stbg==null) {
 			TranslateTransition ttButtonShake0 = new TranslateTransition(Duration.seconds(.05),buttonGroup);
 			ttButtonShake0.setToX(10);
