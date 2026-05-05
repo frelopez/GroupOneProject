@@ -40,7 +40,7 @@ public class ProfileController {
         Score.setText("My Score: "+ score);
     }
     public void SetOnActionCollection(ActionEvent e){
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+        SceneManager.getInstance().navigateTo(SceneType.COLLECTION);
     }
     public void SetOnActionPlay(ActionEvent e){
         SceneManager.getInstance().navigateTo(SceneType.PLAY);
