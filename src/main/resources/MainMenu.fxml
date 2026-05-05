@@ -16,10 +16,25 @@
         <Label text="Hang Your Friends, Man"
                style="-fx-font-size: 28px; -fx-font-weight: bold;" />
 
+        <Button text="Play Hangman"
+                prefWidth="220.0"
+                prefHeight="45.0"
+                onAction="#playGame" />
+
+        <Button text="Leaderboard"
+                prefWidth="220.0"
+                prefHeight="45.0"
+                onAction="#openLeaderboard" />
+
         <Button text="My Collection"
                 prefWidth="220.0"
                 prefHeight="45.0"
                 onAction="#openCollection" />
+
+        <Button text="My Profile"
+                prefWidth="220.0"
+                prefHeight="45.0"
+                onAction="#openProfile" />
 
         <Button text="Exit"
                 prefWidth="220.0"
