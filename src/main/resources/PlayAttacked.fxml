@@ -176,17 +176,47 @@
                 </Group>
             </children>
         </Group>
-        <Group fx:id="startWarning" layoutY="100.0" visible="false">
-            <children>
-                <Label contentDisplay="CENTER" text="WARNING WARNING WARNING" textFill="#000001">
-                    <font>
+      <Group fx:id="startWarning" layoutX="-242.0" layoutY="113.0">
+         <children>
+              <Group>
+                  <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb71f" height="109.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                      <Label contentDisplay="CENTER" layoutX="3.0" layoutY="1.0" text="WARNING WARNING WARNING" textFill="#000001">
+                          <font>
+                              <Font name="Bookman Old Style Bold" size="64.0" />
+                          </font>
+                          <padding>
+                              <Insets left="20.0" top="12.0" />
+                          </padding>
+                  </Label>
+                  </children>
+              </Group>
+            <Group fx:id="startWarningBloom" opacity="0.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb71f" height="109.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1060.0" />
+                  <Label contentDisplay="CENTER" layoutX="3.0" layoutY="1.0" text="WARNING WARNING WARNING" textFill="#000001">
+                     <font>
                         <Font name="Bookman Old Style Bold" size="64.0" />
-                    </font>
-                    <padding>
+                     </font>
+                     <padding>
                         <Insets left="20.0" top="12.0" />
-                    </padding></Label>
-            </children>
-        </Group>
+                     </padding>
+                  </Label>
+               </children>
+               <effect>
+                  <Bloom threshold="0.19">
+                     <input>
+                        <GaussianBlur radius="3.0" />
+                     </input>
+                  </Bloom>
+               </effect>
+            </Group>
+         </children>
+      </Group>
         <Rectangle fx:id="endTransitionTop" arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="-69.0" layoutY="-531.0" rotate="11.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="877.0" />
         <Rectangle fx:id="endTransitionBottom" arcHeight="5.0" arcWidth="5.0" height="405.0" layoutX="-80.0" layoutY="632.0" rotate="15.9" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="877.0" />
     </children>

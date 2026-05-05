@@ -19,7 +19,7 @@ public class Main extends Application {
         stage.setMaxWidth(STAGE_WIDTH); stage.setMinWidth(STAGE_WIDTH);
         stage.setResizable(false);
         SceneManager.init(stage);
-        SceneManager.getInstance().navigateTo(SceneType.PLAY_ATTACKED);
+        SceneManager.getInstance().navigateTo(SceneType.LOGIN);
         stage.show();
     }
 
