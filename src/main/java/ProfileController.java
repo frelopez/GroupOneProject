@@ -39,9 +39,17 @@ public class ProfileController {
         int score = DatabaseManager.getInstance().getUserScore(userid);
         Score.setText("My Score: "+ score);
     }
-    public void SetOnActionMainMenu(ActionEvent e){
+    public void SetOnActionCollection(ActionEvent e){
         SceneManager.getInstance().navigateTo(SceneType.MAIN);
     }
+    public void SetOnActionPlay(ActionEvent e){
+        SceneManager.getInstance().navigateTo(SceneType.PLAY);
+    }
+    public void SetOnActionLeaderboard(ActionEvent e){
+        SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);
+    }
+
+
 
 
 }
