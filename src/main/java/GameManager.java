@@ -23,6 +23,8 @@ public class GameManager {
 
 	private int sendAttackWordId;
 	private int userId;
+	private String user;
+
 	private String getword(){
 		OkHttpClient client = new OkHttpClient();
 		Request request = new Request.Builder()
@@ -94,8 +96,12 @@ public class GameManager {
 	public int getUserId() {
 		return userId;
 	}
+	public String getUserName() {
+		return user;
+	}
 
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public void setUserName(String username){this.user = username;}
 }
