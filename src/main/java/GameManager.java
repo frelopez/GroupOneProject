@@ -25,6 +25,7 @@ public class GameManager {
 
 	private int selectedAttackWordId;
 	private int userId;
+	private String user;
 
 	public void fetchWord(){
 		OkHttpClient client = new OkHttpClient();
@@ -123,8 +124,14 @@ public class GameManager {
 	public int getUserId() {
 		return userId;
 	}
+	public String getUser(){
+		return user;
+	}
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public void setUser(String username){
+		this.user = username;
 	}
 }

@@ -47,6 +47,7 @@ public class SignUpController {
                 if (createUser == -1) {
                     label.setText("User already exist");
                 } else {
+                    GameManager.getInstance().setUser(username);
                     SceneManager.getInstance().navigateTo(SceneType.PROFILE);
                 }
             }else{
