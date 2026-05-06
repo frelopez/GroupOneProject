@@ -55,7 +55,7 @@ public class FailureController {
         scoreLabel.setText("Score change: -" + Math.abs(gm.getEarnedScore()));
     }
 
-    public void continueToMenu() {
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+    public void continueToLeaderboard() {
+        SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);
     }
 }

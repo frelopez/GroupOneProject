@@ -92,8 +92,8 @@ public class SuccessController {
         messageLabel.setText("Word collected!");
     }
 
-    public void continueToMenu() {
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+    public void continueToLeaderboard() {
+        SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);
     }
 
     private int getCurrentUserId() {

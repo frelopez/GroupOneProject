@@ -10,6 +10,8 @@ import java.net.URL;
  * Handles loading the main menu interface,
  * navigating to the collected words scene,
  * and exiting the application.
+ *
+ * this file & scene is unused, use PROFILE instead
  * @author Daniel Barker
  * @version 0.1.0
  * @since 4/29/26

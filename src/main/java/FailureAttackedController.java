@@ -47,8 +47,8 @@ public class FailureAttackedController {
         deleteCompletedAttacks();
     }
 
-    public void continueToMenu() {
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+    public void continueToLeaderboard() {
+        SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);
     }
 
     private String getAttackWordsText() {
