@@ -29,13 +29,24 @@ public class SceneManager {
 
     public void navigateTo(SceneType type) {
         Scene scene;
-        if(type==SceneType.PLAY || type==SceneType.PLAY_ATTACKED || type==SceneType.PROFILE) { //put SceneTypes in here if they shouldn't get cached
+
+        // scenes that should refresh every time
+        if(type == SceneType.PLAY
+                || type == SceneType.PLAY_ATTACKED
+                || type == SceneType.PROFILE
+                || type == SceneType.COLLECTION
+                || type == SceneType.SUCCESS
+                || type == SceneType.FAILURE
+                || type == SceneType.SUCCESS_ATTACKED
+                || type == SceneType.FAILURE_ATTACKED) {
+
             scene = SceneFactory.create(type, stage);
         }
         else {
             scene = cache.computeIfAbsent(type,
                     t -> SceneFactory.create(t, stage));
         }
+
         stage.setScene(scene);
     }
 }

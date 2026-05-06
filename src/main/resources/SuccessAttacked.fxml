@@ -10,28 +10,23 @@
       prefWidth="640.0"
       xmlns="http://javafx.com/javafx/17.0.12"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="SuccessController">
+      fx:controller="SuccessAttackedController">
 
     <children>
-        <Label text="Success!"
+        <Label text="Attack Survived!"
                style="-fx-font-size: 32px; -fx-font-weight: bold;" />
 
         <Label fx:id="wordLabel"
-               text="Word was:"
+               text="Main word was:"
                style="-fx-font-size: 20px;" />
+
+        <Label fx:id="attackWordsLabel"
+               text="Attack words:"
+               style="-fx-font-size: 18px;" />
 
         <Label fx:id="scoreLabel"
                text="Score change:"
                style="-fx-font-size: 18px;" />
-
-        <Button text="Collect Word"
-                prefWidth="180.0"
-                prefHeight="40.0"
-                onAction="#collectWord" />
-
-        <Label fx:id="messageLabel"
-               text=""
-               style="-fx-font-size: 14px;" />
 
         <Button text="Continue"
                 prefWidth="180.0"
