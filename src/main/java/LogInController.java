@@ -48,6 +48,7 @@ public class LogInController {
                 LogInMessage.setText("Incorrect Username or Password");
             }else{
                 GameManager.getInstance().setUser(Username);
+                GameManager.getInstance().setUserId(userID);
                 SceneManager.getInstance().navigateTo(SceneType.PROFILE);
             }
 

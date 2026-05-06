@@ -47,14 +47,19 @@ public class CollectionController {
     public void initialize() {
         DatabaseManager db = DatabaseManager.getInstance();
 
-        int userId = db.getUserId("test user 1");
+        GameManager gm = GameManager.getInstance();
 
-        if (userId == -1) {
-            userId = db.insertUser("test user 1", "password");
-            int wordId = db.insertWord("banana", 2);
-            db.addCollectedWord(userId, wordId, 0);
+        int userId = gm.getUserId();
+
+        if (userId <= 0 && gm.getUser() != null) {
+            userId = db.getUserId(gm.getUser());
+            gm.setUserId(userId);
         }
-        GameManager.getInstance().setUserId(userId);
+
+        if (userId == -1 || userId == 0) {
+            messageLabel.setText("No logged-in user found.");
+            return;
+        }
 
         List<String> words = db.getCollectedWordsForUser(userId);
         wordListView.getItems().setAll(words);
@@ -72,7 +77,7 @@ public class CollectionController {
             messageLabel.setText("Choose a word before sending an attack.");
         } else {
             messageLabel.setText("Attack selected with word: " + selectedWord);
-            GameManager.getInstance().setSendAttackWord(db.getUserId(selectedWord));
+            GameManager.getInstance().setSendAttackWord(db.getWordId(selectedWord));
             SceneManager.getInstance().navigateTo(SceneType.ATTACKING);
         }
     }

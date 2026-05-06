@@ -190,6 +190,17 @@ public class DatabaseManager {
 		return 0;
 	}
 
+	public void updateUserScore(int id, int scoreChange) {
+		String sql = "UPDATE Users SET score = score + ? WHERE id = ?";
+		try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1, scoreChange);
+			pstmt.setInt(2, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("updateUserScore failed: " + e.getMessage());
+		}
+	}
+
 	public void deleteUser(int id) {
 		String sql = "DELETE FROM Users WHERE id = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
