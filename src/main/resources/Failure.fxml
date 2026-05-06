@@ -22,7 +22,7 @@
             <Font name="Consolas" size="18.0" />
          </font></Label>
 
-        <Button onAction="#continueToMenu" prefHeight="40.0" prefWidth="180.0" text="Continue">
+        <Button onAction="#continueToLeaderboard" prefHeight="40.0" prefWidth="180.0" text="Continue">
          <font>
             <Font name="Bookman Old Style Bold" size="12.0" />
          </font></Button>

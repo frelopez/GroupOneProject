@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER"
-      spacing="18.0"
-      prefHeight="480.0"
-      prefWidth="640.0"
-      xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="SuccessAttackedController">
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="18.0" style="-fx-background-color: #a99cff;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SuccessAttackedController">
 
     <children>
-        <Label text="Attack Survived!"
-               style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+        <Label text="Attack Survived!" textFill="#1e1c2d">
+         <font>
+            <Font name="Bookman Old Style Bold" size="32.0" />
+         </font></Label>
 
-        <Label fx:id="wordLabel"
-               text="Main word was:"
-               style="-fx-font-size: 20px;" />
+        <Label fx:id="wordLabel" text="Main word was:" textFill="#1e1c2d">
+         <font>
+            <Font name="Consolas" size="20.0" />
+         </font></Label>
 
-        <Label fx:id="attackWordsLabel"
-               text="Attack words:"
-               style="-fx-font-size: 18px;" />
+        <Label fx:id="attackWordsLabel" text="Attack words:" textFill="#1e1c2d">
+         <font>
+            <Font name="Consolas" size="18.0" />
+         </font></Label>
 
-        <Label fx:id="scoreLabel"
-               text="Score change:"
-               style="-fx-font-size: 18px;" />
+        <Label fx:id="scoreLabel" text="Score change:" textFill="#1e1c2d">
+         <font>
+            <Font name="Consolas" size="18.0" />
+         </font></Label>
 
-        <Button text="Continue"
-                prefWidth="180.0"
-                prefHeight="40.0"
-                onAction="#continueToMenu" />
+        <Button onAction="#collectWord" prefHeight="40.0" prefWidth="180.0" text="Collect Word">
+         <font>
+            <Font name="Bookman Old Style Bold" size="12.0" />
+         </font></Button>
+
+        <Label fx:id="messageLabel" style="-fx-font-size: 14px;" text="" textFill="#1e1c2d">
+            <font>
+                <Font name="Consolas" size="12.0" />
+            </font></Label>
+
+        <Button onAction="#continueToLeaderboard" prefHeight="40.0" prefWidth="180.0" text="Continue">
+         <font>
+            <Font name="Bookman Old Style Bold" size="12.0" />
+         </font></Button>
     </children>
 </VBox>

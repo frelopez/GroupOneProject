@@ -83,6 +83,6 @@ public class CollectionController {
     }
 
     public void returnToMenu() {
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+        SceneManager.getInstance().navigateTo(SceneType.PROFILE);
     }
 }

@@ -38,7 +38,9 @@ public class SceneManager {
                 || type == SceneType.SUCCESS
                 || type == SceneType.FAILURE
                 || type == SceneType.SUCCESS_ATTACKED
-                || type == SceneType.FAILURE_ATTACKED) {
+                || type == SceneType.FAILURE_ATTACKED
+                || type == SceneType.LEADERBOARD
+                || type == SceneType.LOGIN) {
 
             scene = SceneFactory.create(type, stage);
         }

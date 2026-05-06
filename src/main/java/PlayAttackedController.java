@@ -158,8 +158,6 @@ public class PlayAttackedController {
 		}
 		else { word2 = null; }
 
-		System.out.println(wordR+"\t"+word0+"\t"+word1+"\t"+word2);
-
 		resetAnimations();
 		guessedLettersLabel.setText("Letters Guessed: ");
 		indicatorHead.setVisible(false);
@@ -386,14 +384,14 @@ public class PlayAttackedController {
 					new KeyFrame(Duration.ZERO, event -> ttBarBottom0.play()),
 					new KeyFrame(Duration.seconds(.5), event -> ttBarTop1.play()),
 					new KeyFrame(Duration.seconds(.5), event -> ttBarBottom1.play()),
-					new KeyFrame(Duration.seconds(1), event -> SceneManager.getInstance().navigateTo(SceneType.SUCCESS))
+					new KeyFrame(Duration.seconds(1), event -> SceneManager.getInstance().navigateTo(SceneType.SUCCESS_ATTACKED))
 			);
 			tlef = new Timeline(
 					new KeyFrame(Duration.ZERO, event -> ttBarTop0.play()),
 					new KeyFrame(Duration.ZERO, event -> ttBarBottom0.play()),
 					new KeyFrame(Duration.seconds(.5), event -> ttBarTop1.play()),
 					new KeyFrame(Duration.seconds(.5), event -> ttBarBottom1.play()),
-					new KeyFrame(Duration.seconds(1), event -> SceneManager.getInstance().navigateTo(SceneType.FAILURE))
+					new KeyFrame(Duration.seconds(1), event -> SceneManager.getInstance().navigateTo(SceneType.FAILURE_ATTACKED))
 			);
 		}
 

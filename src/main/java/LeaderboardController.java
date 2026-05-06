@@ -62,7 +62,7 @@ public class LeaderboardController{
 
 
     public void returnButtonClicked(ActionEvent actionEvent) throws IOException {
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+        SceneManager.getInstance().navigateTo(SceneType.PROFILE);
     }
 }
 

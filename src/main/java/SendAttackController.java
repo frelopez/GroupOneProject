@@ -121,6 +121,6 @@ public class SendAttackController {
             db.deleteCollectedWord(gm.getUserId(), gm.getSendAttackWordId());
         }
 
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+        SceneManager.getInstance().navigateTo(SceneType.PROFILE);
     }
 }

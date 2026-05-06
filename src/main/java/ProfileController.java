@@ -7,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 
 public class ProfileController {
@@ -43,7 +45,26 @@ public class ProfileController {
         SceneManager.getInstance().navigateTo(SceneType.COLLECTION);
     }
     public void SetOnActionPlay(ActionEvent e){
-        SceneManager.getInstance().navigateTo(SceneType.PLAY);
+        DatabaseManager db = DatabaseManager.getInstance();
+        GameManager gm = GameManager.getInstance();
+        int user = gm.getUserId();
+        List<Integer> attacks = db.getAttacksToDestination(user);
+        if(attacks.isEmpty()) {
+            SceneManager.getInstance().navigateTo(SceneType.PLAY);
+        } else {
+            gm.setAttackWordID0(attacks.get(0));
+            if(attacks.size()>=2) {
+                gm.setAttackWordID1(attacks.get(1));
+            } else {
+                gm.setAttackWordID1(-1);
+            }
+            if(attacks.size()>=3) {
+                gm.setAttackWordID2(attacks.get(2));
+            } else {
+                gm.setAttackWordID2(-1);
+            }
+            SceneManager.getInstance().navigateTo(SceneType.PLAY_ATTACKED);
+        }
     }
     public void SetOnActionLeaderboard(ActionEvent e){
         SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);

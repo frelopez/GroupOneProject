@@ -6,8 +6,11 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class SuccessAttackedController {
+    @FXML
+    private Label messageLabel;
     @FXML
     private Label wordLabel;
 
@@ -43,12 +46,44 @@ public class SuccessAttackedController {
         if (userId != -1) {
             db.updateUserScore(userId, gm.getEarnedScore());
         }
-
         deleteCompletedAttacks();
     }
 
-    public void continueToMenu() {
-        SceneManager.getInstance().navigateTo(SceneType.MAIN);
+    public void collectWord() {
+        GameManager gm = GameManager.getInstance();
+        DatabaseManager db = DatabaseManager.getInstance();
+
+        int userId = getCurrentUserId();
+        String word = gm.getRandomWord();
+
+        if (userId == -1 || word == null || word.isBlank()) {
+            messageLabel.setText("Could not collect word.");
+            return;
+        }
+
+        List<String> collected = db.getCollectedWordsForUser(userId);
+
+        if (collected.contains(word)) {
+            messageLabel.setText("Word already collected.");
+            return;
+        }
+
+        if (collected.size() >= 3) {
+            messageLabel.setText("Collection is full.");
+            return;
+        }
+
+        int wordId = db.getWordId(word);
+        if (wordId == -1) {
+            wordId = db.insertWord(word, 2);
+        }
+
+        db.addCollectedWord(userId, wordId, collected.size());
+        messageLabel.setText("Word collected!");
+    }
+
+    public void continueToLeaderboard() {
+        SceneManager.getInstance().navigateTo(SceneType.LEADERBOARD);
     }
 
     private String getAttackWordsText() {
