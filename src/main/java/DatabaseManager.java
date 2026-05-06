@@ -42,6 +42,11 @@ public class DatabaseManager {
 		}
 	}
 
+	static void resetForTesting() {
+		if(instance!=null) instance.close();
+		instance=null;
+	}
+
 	private void createTables() {
 		//check w3schools.com for docs!
 		String sql = """
@@ -177,6 +182,7 @@ public class DatabaseManager {
 		}
 		return returnMe;
 	}
+
 	public int getUserScore(int id) {
 		String sql = "SELECT score FROM Users WHERE id = ?";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -208,16 +214,6 @@ public class DatabaseManager {
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			System.err.println("deleteUser failed: "+e.getMessage());
-		}
-	}
-
-	//TODO temporary. get rid of before submitting
-	public void resetUserTable() {
-		String sql = "DELETE FROM Users";
-		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
-			pstmt.execute();
-		} catch(SQLException e) {
-			System.err.println("resetUserTable failed: "+e.getMessage());
 		}
 	}
 
@@ -274,6 +270,20 @@ public class DatabaseManager {
 			System.err.println("getWordId failed: " + e.getMessage());
 		}
 		return id;
+	}
+
+	public List<String> getAllWords() {
+		List<String> usernames = new ArrayList<>();
+		String sql = "SELECT word FROM Words ORDER BY id DESC";
+		try(Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(sql)) {
+			while(rs.next()) {
+				usernames.add(rs.getString("name"));
+			}
+		} catch(SQLException e) {
+			System.err.println("getAllWords failed: "+e.getMessage());
+		}
+		return usernames;
 	}
 
 	public String getWordText(int id) {
@@ -371,6 +381,16 @@ public class DatabaseManager {
 		}
 	}
 
+	public void deleteWord(int id) {
+		String sql = "DELETE FROM Words WHERE id = ?";
+		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
+			pstmt.setInt(1,id);
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.err.println("deleteWord failed: "+e.getMessage());
+		}
+	}
+
 	public int insertAttack(int wordID, int originID, int destinationID) {
 		String sql = "INSERT INTO Attacks (origin_id, destination_id, word_id) VALUES (?, ?, ?)";
 		try(PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -441,28 +461,6 @@ public class DatabaseManager {
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			System.err.println("deleteAttack failed: "+e.getMessage());
-		}
-	}
-
-	//TODO temporary. get rid of before submitting
-	public void dropEverything() {
-		String sql = "DROP TABLE Users";
-		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
-			pstmt.execute();
-		}catch(SQLException e) {
-			System.err.println("FRICK "+e.getMessage());
-		}
-		sql = "DROP TABLE Words";
-		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
-			pstmt.execute();
-		}catch(SQLException e) {
-			System.err.println("FRICK "+e.getMessage());
-		}
-		sql = "DROP TABLE Attacks";
-		try(PreparedStatement pstmt = connection.prepareStatement(sql)) {
-			pstmt.execute();
-		}catch(SQLException e) {
-			System.err.println("FRICK "+e.getMessage());
 		}
 	}
 
