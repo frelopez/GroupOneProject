@@ -1,5 +1,4 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,33 +15,74 @@ class DatabaseManagerTest {
 
 	@BeforeEach
 	void setUp() {
-		db = DatabaseManager.getInstance();
+		System.setProperty("app.db.url","jdbc:sqlite::memory:");
+		DatabaseManager.resetForTesting();
+	}
+
+	@AfterEach
+	void teardown() {
+		DatabaseManager.resetForTesting();
 	}
 
 	@Test
-	public void usersTableTest() {
-		// make sure the usernames we're testing on dont exist yet
-		db.deleteUser(db.getUserId("test user 1"));
-		db.deleteUser(db.getUserId("john test user"));
-		// testing databasemanager's existence
-		assertNotNull(db);
-		// testing insertion
-		int startSize = db.getAllUsers().size();
-		db.insertUser("test user 1", "password");
-		assertNotEquals(startSize, db.getAllUsers().size());
-		int testUserId = db.getUserId("test user 1");
-		assertNotEquals(-1, testUserId);
-		// testing no duplicates
-		int dupeTestSize = db.getAllUsers().size();
-		db.insertUser("test user 1", "drowssap");
-		assertEquals(dupeTestSize,db.getAllUsers().size());
-		// test rename
-		db.updateUserName(testUserId, "john test user");
-		assertNotEquals(-1,db.getUserId("john test user"));
-		assertEquals(-1, db.getUserId("test user 1"));
-		assertEquals(testUserId, db.getUserId("john test user"));
-		// test delete
-		db.deleteUser(testUserId);
-		assertEquals(startSize,db.getAllUsers().size());
+	@DisplayName("getInstance returns the same thing each time")
+	void singletonIdentity() {
+		DatabaseManager a = DatabaseManager.getInstance();
+		DatabaseManager b = DatabaseManager.getInstance();
+		assertEquals(a,b);
+	}
+
+	@Test
+	@DisplayName("CRUD testing on Users table")
+	void usersTableTest() {
+		DatabaseManager db = DatabaseManager.getInstance();
+		db.insertUser("mr. tester","password123");
+		assertTrue(db.getAllUsers().contains("mr. tester"));
+		int testUserID = db.getUserId("mr. tester");
+		assertEquals(testUserID, db.loginUser("mr. tester","password123"));
+		//updateUserName is never used, but testing it anyway
+		db.updateUserName(testUserID, "ms. tester"); //oh, she transitioned, congratulations!
+		assertTrue(db.getAllUsers().contains("ms. tester"));
+		assertFalse(db.getAllUsers().contains("mr. tester"));
+		db.updateUserScore(testUserID, 999999999);
+		assertEquals(999999999, db.getUserScore(testUserID));
+		db.deleteUser(testUserID);
+		assertFalse(db.getAllUsers().contains("ms. tester"));
+	}
+
+	@Test
+	@DisplayName("CRUD testing on Words table (Words should not be edited at any point)")
+	void wordsTableTest() {
+		DatabaseManager db = DatabaseManager.getInstance();
+		int testWordID = db.insertWord("testword", 1);
+		int testUserID = db.insertUser("word liker", "password456");
+		assertTrue(db.getAllWords().contains("testword"));
+		assertEquals(testWordID, db.getWordId("testword"));
+		assertEquals("testword", db.getWordText(testWordID));
+		db.addCollectedWord(testUserID, testWordID, 0);
+		assertTrue(db.getCollectedWordsForUser(testUserID).contains("testword"));
+		int testWord2ID = db.insertWord("cooler testword", 2);
+		db.updateCollectedWord(testUserID,testWordID,testWord2ID);
+		assertFalse(db.getCollectedWordsForUser(testUserID).contains("testword"));
+		assertTrue(db.getCollectedWordsForUser(testUserID).contains("cooler testword"));
+		db.deleteWord(testWordID);
+		assertFalse(db.getAllWords().contains("testword"));
+		db.deleteCollectedWord(testUserID,testWord2ID);
+		assertFalse(db.getCollectedWordsForUser(testUserID).contains("cooler testword"));
+	}
+
+	@Test
+	@DisplayName("CRUD testing on Attacks table (Attacks should not be edited at any point)")
+	void attacksTableTest() {
+		DatabaseManager db = DatabaseManager.getInstance();
+		int testUserRID = db.insertUser("john red", "password red");
+		int testUserBIF = db.insertUser("john blue", "password blue");
+		int testWordID = db.insertWord("john attack", 99);
+		int testAttackID = db.insertAttack(testWordID, testUserRID, testUserBIF);
+		assertEquals(testUserRID, db.getAttackOrigin(testAttackID));
+		assertEquals(testWordID, db.getAttackWord(testAttackID));
+		assertTrue(db.getAttacksToDestination(testUserBIF).contains(testWordID));
+		db.deleteAttack(testAttackID);
+		assertEquals(-1, db.getAttackOrigin(testAttackID));
 	}
 }

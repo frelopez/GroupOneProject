@@ -33,6 +33,9 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.10.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.assertj:assertj-core:3.13.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.osgi:org.osgi.core:6.0.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.openjfx:javafx-graphics:win:22" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.openjfx:javafx-fxml:win:22" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.openjfx:javafx-controls:win:22" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="GroupOneProject.main" />
 </module>
